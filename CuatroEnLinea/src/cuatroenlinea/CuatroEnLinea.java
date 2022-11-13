@@ -5,15 +5,17 @@
 package cuatroenlinea;
 
 import cuatroenlinea.Controller.Controller;
+import cuatroenlinea.View.CreateNewPlayerView;
 import cuatroenlinea.View.MainMenuView;
 
 public class CuatroEnLinea {
 
   public static void main(String[] args) {
     MainMenuView mainMenuView = new MainMenuView();
-    Controller controller = new Controller(mainMenuView);
+    CreateNewPlayerView createNewPlayerView = new CreateNewPlayerView();
+    Controller controller = new Controller(mainMenuView, createNewPlayerView);
 
     controller.init();
-    
+
   }
 }

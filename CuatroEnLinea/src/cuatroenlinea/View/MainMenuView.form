@@ -41,10 +41,10 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="625" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                      <Component id="viewResultsButton" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jButton2" alignment="0" pref="291" max="32767" attributes="0"/>
-                          <Component id="jButton1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="createNewPlayerButton" alignment="0" pref="291" max="32767" attributes="0"/>
+                          <Component id="playButton" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel1" min="-2" pref="259" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
@@ -61,11 +61,11 @@
                   <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" pref="84" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" pref="64" max="-2" attributes="0"/>
+                  <Component id="playButton" min="-2" pref="64" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
-                  <Component id="jButton2" min="-2" pref="79" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                  <Component id="jButton3" min="-2" pref="69" max="-2" attributes="0"/>
+                  <Component id="createNewPlayerButton" min="-2" pref="70" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                  <Component id="viewResultsButton" min="-2" pref="69" max="-2" attributes="0"/>
                   <EmptySpace pref="200" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -80,7 +80,7 @@
             <Property name="text" type="java.lang.String" value="4 En Linea"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="playButton">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="24" style="0"/>
@@ -88,7 +88,7 @@
             <Property name="text" type="java.lang.String" value="Jugar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="createNewPlayerButton">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="24" style="0"/>
@@ -96,7 +96,7 @@
             <Property name="text" type="java.lang.String" value="Crear jugador"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton3">
+        <Component class="javax.swing.JButton" name="viewResultsButton">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="24" style="0"/>

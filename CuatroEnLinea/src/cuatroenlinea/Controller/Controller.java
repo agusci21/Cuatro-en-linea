@@ -4,6 +4,7 @@
  */
 package cuatroenlinea.Controller;
 
+import cuatroenlinea.View.CreateNewPlayerView;
 import cuatroenlinea.View.MainMenuView;
 
 /**
@@ -12,9 +13,10 @@ import cuatroenlinea.View.MainMenuView;
  */
 public class Controller {
     private MainMenuView mainMenuView;
-
-    public Controller(MainMenuView mainMenuView) {
+    private CreateNewPlayerView createNewPlayerView;
+    public Controller(MainMenuView mainMenuView, CreateNewPlayerView createNewPlayerView) {
         this.mainMenuView = mainMenuView;
+        this.createNewPlayerView = createNewPlayerView;
     }
 
     public void init(){
