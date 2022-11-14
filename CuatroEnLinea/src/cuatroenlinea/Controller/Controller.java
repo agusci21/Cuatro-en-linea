@@ -7,6 +7,7 @@ package cuatroenlinea.Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import cuatroenlinea.Model.Model;
 import cuatroenlinea.View.CreateNewPlayerView;
 import cuatroenlinea.View.MainMenuView;
 
@@ -17,15 +18,24 @@ import cuatroenlinea.View.MainMenuView;
 public class Controller implements ActionListener{
     private MainMenuView mainMenuView;
     private CreateNewPlayerView createNewPlayerView;
-    public Controller(MainMenuView mainMenuView, CreateNewPlayerView createNewPlayerView) {
+    private Model model;
+
+    public Controller(
+        Model model,
+        MainMenuView mainMenuView, 
+        CreateNewPlayerView createNewPlayerView
+        ) {
+        this.model = model;
         this.mainMenuView = mainMenuView;
         this.createNewPlayerView = createNewPlayerView;
     }
 
     public void init(){
         mainMenuView.getCreateNewPlayerButton().addActionListener(this);
-
+        createNewPlayerView.getCreateNewPlayerSubmitButton().addActionListener(this);
+        createNewPlayerView.getCreateNewPlayerTextField().addActionListener(this);
         mainMenuView.setVisible(true);
+        //TODO: Read players json list and save it in models
 
     }
 
@@ -36,6 +46,8 @@ public class Controller implements ActionListener{
         if(pressedButton == mainMenuView.getCreateNewPlayerButton()){
             this.createNewPlayerView.setVisible(true);
             this.mainMenuView.setVisible(false);
+        }else if(pressedButton == createNewPlayerView.getCreateNewPlayerSubmitButton()){
+
         }
         
     }
