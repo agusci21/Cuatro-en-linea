@@ -7,6 +7,7 @@ package cuatroenlinea.Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import cuatroenlinea.Helpers.FileSystemHelper;
 import cuatroenlinea.Model.Model;
 import cuatroenlinea.View.CreateNewPlayerView;
 import cuatroenlinea.View.MainMenuView;
@@ -47,7 +48,8 @@ public class Controller implements ActionListener{
             this.createNewPlayerView.setVisible(true);
             this.mainMenuView.setVisible(false);
         }else if(pressedButton == createNewPlayerView.getCreateNewPlayerSubmitButton()){
-
+            model.setNewPlayerName(createNewPlayerView.getCreateNewPlayerTextField().getText());
+            FileSystemHelper.createNewUserLocalStorage(model.createNewUserToJson());
         }
         
     }

@@ -10,7 +10,7 @@ public class Model {
     public String createNewUserToJson(){
         return 
         "{" + 
-        "   playerName : " + this.newPlayerName + 
+        "\"playerName\" : " + "\"" + this.newPlayerName + "\"" +
         "}";
     }
 
