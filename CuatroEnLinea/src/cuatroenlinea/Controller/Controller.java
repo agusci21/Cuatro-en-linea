@@ -4,6 +4,9 @@
  */
 package cuatroenlinea.Controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import cuatroenlinea.View.CreateNewPlayerView;
 import cuatroenlinea.View.MainMenuView;
 
@@ -11,7 +14,7 @@ import cuatroenlinea.View.MainMenuView;
  *
  * @author agust
  */
-public class Controller {
+public class Controller implements ActionListener{
     private MainMenuView mainMenuView;
     private CreateNewPlayerView createNewPlayerView;
     public Controller(MainMenuView mainMenuView, CreateNewPlayerView createNewPlayerView) {
@@ -20,7 +23,21 @@ public class Controller {
     }
 
     public void init(){
+        mainMenuView.getCreateNewPlayerButton().addActionListener(this);
+
         mainMenuView.setVisible(true);
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Object pressedButton = e.getSource();
+
+        if(pressedButton == mainMenuView.getCreateNewPlayerButton()){
+            this.createNewPlayerView.setVisible(true);
+            this.mainMenuView.setVisible(false);
+        }
+        
     }
 
     
