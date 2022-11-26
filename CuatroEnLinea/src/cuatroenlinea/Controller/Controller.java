@@ -37,7 +37,7 @@ public class Controller implements ActionListener{
         createNewPlayerView.getCreateNewPlayerSubmitButton().addActionListener(this);
         createNewPlayerView.getCreateNewPlayerTextField().addActionListener(this);
         mainMenuView.setVisible(true);
-        System.out.println(FileSystemHelper.getPlayerJSONString());
+        FileSystemHelper.getPlayersFromJSON();
         
     }
 

@@ -3,6 +3,10 @@ package cuatroenlinea.Helpers;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import cuatroenlinea.Entitys.PlayerEntity;
 
@@ -47,6 +51,21 @@ public abstract class FileSystemHelper {
       return jsonString;
     } catch (Exception e) {}
     return "";
+  }
+
+  public static ArrayList<PlayerEntity> getPlayersFromJSON(){
+    String jsonString = getPlayerJSONString();
+    JSONObject playersJson = new JSONObject(jsonString);
+    JSONArray playersArray = (JSONArray) playersJson.get("players");
+    ArrayList<PlayerEntity> players = new ArrayList<PlayerEntity>();
+
+    for(int i = 0; i < playersArray.length(); i++){
+      JSONObject playerObject =(JSONObject) playersArray.get(i);
+      players.add(PlayerEntity.fromJson(playerObject));
+    }
+
+    return players;
+
   }
 
   public static boolean fileExists(String directoryFileName) {
