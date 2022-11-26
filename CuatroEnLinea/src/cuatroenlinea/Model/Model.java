@@ -1,16 +1,17 @@
 package cuatroenlinea.Model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+
+import cuatroenlinea.Entitys.PlayerEntity;
 
 public class Model {
     private String newPlayerName;
-    private ArrayList<HashMap<String, String>> players;
+    private ArrayList<PlayerEntity> players;
     
-    public ArrayList<HashMap<String, String>> getPlayers() {
+    public ArrayList<PlayerEntity> getPlayers() {
         return players;
     }
-    public void setPlayers(ArrayList<HashMap<String, String>> players) {
+    public void setPlayers(ArrayList<PlayerEntity> players) {
         this.players = players;
     }
     public String getNewPlayerName() {
