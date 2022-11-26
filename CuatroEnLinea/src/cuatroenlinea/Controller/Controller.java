@@ -12,6 +12,7 @@ import cuatroenlinea.Model.Model;
 import cuatroenlinea.View.CreateNewPlayerView;
 import cuatroenlinea.View.MainMenuView;
 
+
 /**
  *
  * @author agust
@@ -36,7 +37,13 @@ public class Controller implements ActionListener{
         createNewPlayerView.getCreateNewPlayerSubmitButton().addActionListener(this);
         createNewPlayerView.getCreateNewPlayerTextField().addActionListener(this);
         mainMenuView.setVisible(true);
+        System.out.println(FileSystemHelper.getPlayerJSONString());
+        
         //TODO: Read players json list and save it in models
+
+    }
+
+    public void loadSavedPlayers(){
 
     }
 
@@ -49,7 +56,7 @@ public class Controller implements ActionListener{
             this.mainMenuView.setVisible(false);
         }else if(pressedButton == createNewPlayerView.getCreateNewPlayerSubmitButton()){
             model.setNewPlayerName(createNewPlayerView.getCreateNewPlayerTextField().getText());
-            FileSystemHelper.createNewUserLocalStorage(model.createNewUserToJson());
+            FileSystemHelper.createNewUserLocalStorage(model.getNewPlayerName());
         }
         
     }
