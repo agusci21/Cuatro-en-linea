@@ -39,8 +39,6 @@ public class Controller implements ActionListener{
         mainMenuView.setVisible(true);
         System.out.println(FileSystemHelper.getPlayerJSONString());
         
-        //TODO: Read players json list and save it in models
-
     }
 
     public void loadSavedPlayers(){
