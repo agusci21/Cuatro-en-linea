@@ -53,17 +53,20 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                   <Component id="player1selectionList" min="-2" pref="344" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                           <Component id="player1constLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="317" max="32767" attributes="0"/>
                           <Component id="player2ConstLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="294" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="firstPlayerLabel" min="-2" pref="208" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="vsLabel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="secondPlayerLabel" min="-2" pref="228" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -100,7 +103,11 @@
                               <Component id="player2ConstLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                          <Component id="vsLabel" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="vsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="firstPlayerLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="secondPlayerLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -135,6 +142,10 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="VS"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="firstPlayerLabel">
+        </Component>
+        <Component class="javax.swing.JLabel" name="secondPlayerLabel">
         </Component>
       </SubComponents>
     </Container>

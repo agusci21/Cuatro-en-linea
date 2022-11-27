@@ -4,6 +4,7 @@
  */
 package cuatroenlinea.Controller;
 
+import cuatroenlinea.Entities.PlayerEntity;
 import cuatroenlinea.Helpers.FileSystemHelper;
 import cuatroenlinea.Model.Model;
 import cuatroenlinea.View.CreateNewPlayerView;
@@ -39,7 +40,6 @@ public class Controller implements ActionListener {
     mainMenuView.getCreateNewPlayerButton().addActionListener(this);
     mainMenuView.getPlayButton().addActionListener(this);
 
-    
     // create new player buttons
     createNewPlayerView
       .getCreateNewPlayerSubmitButton()
@@ -47,6 +47,8 @@ public class Controller implements ActionListener {
     createNewPlayerView.getCreateNewPlayerTextField().addActionListener(this);
 
     //Select players buttons
+    selectPlayersView.getPlayer1selectionList().addActionListener(this);
+    selectPlayersView.getPlayer2selectionList().addActionListener(this);
 
     //Commons acctions
     model.setPlayers(FileSystemHelper.getPlayersFromJSON());
@@ -70,8 +72,20 @@ public class Controller implements ActionListener {
       mainMenuView.setVisible(true);
       createNewPlayerView.setVisible(false);
     } else if (pressedButton == mainMenuView.getPlayButton()) {
+      for (PlayerEntity player : model.getPlayers()) {
+        selectPlayersView.getPlayer1selectionList().add(player.getName());
+        selectPlayersView.getPlayer2selectionList().add(player.getName());
+      }
       selectPlayersView.setVisible(true);
       mainMenuView.setVisible(false);
+    } else if (pressedButton == selectPlayersView.getPlayer1selectionList()) {
+      selectPlayersView
+        .getFirstPlayerLabel()
+        .setText(selectPlayersView.getPlayer1selectionList().getSelectedItem());
+    } else if (pressedButton == selectPlayersView.getPlayer2selectionList()) {
+      selectPlayersView
+        .getSecondPlayerLabel()
+        .setText(selectPlayersView.getPlayer2selectionList().getSelectedItem());
     }
   }
 }
