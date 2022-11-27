@@ -2,7 +2,7 @@ package cuatroenlinea.Model;
 
 import java.util.ArrayList;
 
-import cuatroenlinea.Entitys.PlayerEntity;
+import cuatroenlinea.Entities.PlayerEntity;
 
 public class Model {
     private ArrayList<PlayerEntity> players;

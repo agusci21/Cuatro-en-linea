@@ -53,6 +53,8 @@ public class Controller implements ActionListener {
       pressedButton == createNewPlayerView.getCreateNewPlayerSubmitButton()
     ) {
       FileSystemHelper.saveNewPlayer(createNewPlayerView.getCreateNewPlayerTextField().getText(), model.getPlayers());
+      mainMenuView.setVisible(true);
+      createNewPlayerView.setVisible(false);
     }
   }
 }
