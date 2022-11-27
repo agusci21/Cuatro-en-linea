@@ -14,6 +14,9 @@ public class MainMenuView extends javax.swing.JFrame {
     public javax.swing.JButton getCreateNewPlayerButton() {
         return createNewPlayerButton;
     }
+    public javax.swing.JButton getPlayButton() {
+        return playButton;
+    }
     
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
