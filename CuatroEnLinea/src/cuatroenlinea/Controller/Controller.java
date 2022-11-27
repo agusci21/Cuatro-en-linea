@@ -39,7 +39,11 @@ public class Controller implements ActionListener {
     mainMenuView.getCreateNewPlayerButton().addActionListener(this);
     mainMenuView.getPlayButton().addActionListener(this);
 
+    
     // create new player buttons
+    createNewPlayerView
+      .getCreateNewPlayerSubmitButton()
+      .addActionListener(this);
     createNewPlayerView.getCreateNewPlayerTextField().addActionListener(this);
 
     //Select players buttons
