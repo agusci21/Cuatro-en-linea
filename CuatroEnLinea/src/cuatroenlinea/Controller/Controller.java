@@ -52,10 +52,7 @@ public class Controller implements ActionListener {
     } else if (
       pressedButton == createNewPlayerView.getCreateNewPlayerSubmitButton()
     ) {
-      model.setNewPlayerName(
-        createNewPlayerView.getCreateNewPlayerTextField().getText()
-      );
-      FileSystemHelper.saveNewPlayer(model.getNewPlayerName(), model.getPlayers());
+      FileSystemHelper.saveNewPlayer(createNewPlayerView.getCreateNewPlayerTextField().getText(), model.getPlayers());
     }
   }
 }
