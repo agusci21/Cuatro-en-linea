@@ -7,12 +7,14 @@ package cuatroenlinea.Controller;
 import cuatroenlinea.Entities.PlayerEntity;
 import cuatroenlinea.Helpers.FileSystemHelper;
 import cuatroenlinea.Helpers.MessageHelper;
+import cuatroenlinea.Helpers.PlayersHelper;
 import cuatroenlinea.Model.Model;
 import cuatroenlinea.View.CreateNewPlayerView;
 import cuatroenlinea.View.MainMenuView;
 import cuatroenlinea.View.SelectPlayersView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -46,16 +48,17 @@ public class Controller implements ActionListener {
       .getCreateNewPlayerSubmitButton()
       .addActionListener(this);
     createNewPlayerView.getCreateNewPlayerTextField().addActionListener(this);
-
+    createNewPlayerView.getBackButton().addActionListener(this);
     //Select players buttons
     selectPlayersView.getPlayer1selectionList().addActionListener(this);
+
     selectPlayersView.getPlayer2selectionList().addActionListener(this);
     selectPlayersView.getSelectPlayerButton().addActionListener(this);
     selectPlayersView.getPlayButton().addActionListener(this);
     selectPlayersView.getBackButton().addActionListener(this);
-
     //Commons acctions
     model.setPlayers(FileSystemHelper.getPlayersFromJSON());
+
     mainMenuView.setVisible(true);
   }
 
@@ -69,10 +72,22 @@ public class Controller implements ActionListener {
     } else if (
       pressedButton == createNewPlayerView.getCreateNewPlayerSubmitButton()
     ) {
+      if (
+        PlayersHelper.willBeDupplictedPlayers(
+          createNewPlayerView.getCreateNewPlayerTextField().getText(),
+          model.getPlayers()
+        )
+      ) {
+        JOptionPane.showMessageDialog(null, "Ese nombre ya esta en uso");
+        return;
+      }
       FileSystemHelper.saveNewPlayer(
         createNewPlayerView.getCreateNewPlayerTextField().getText(),
         model.getPlayers()
       );
+      mainMenuView.setVisible(true);
+      createNewPlayerView.setVisible(false);
+    } else if (pressedButton == createNewPlayerView.getBackButton()) {
       mainMenuView.setVisible(true);
       createNewPlayerView.setVisible(false);
     } else if (pressedButton == mainMenuView.getPlayButton()) {

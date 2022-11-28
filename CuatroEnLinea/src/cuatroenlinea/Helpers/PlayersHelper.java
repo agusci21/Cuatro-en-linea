@@ -20,6 +20,18 @@ public abstract class PlayersHelper {
     return areDupplicatedPlayers;
   }
 
+  public static boolean willBeDupplictedPlayers(
+    String name,
+    ArrayList<PlayerEntity> players
+  ) {
+    for (PlayerEntity player : players) {
+      if (player.getName().equals(name)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   public static PlayerEntity getPlayerByName(
     String name,
     ArrayList<PlayerEntity> players
