@@ -49,6 +49,9 @@ public class Controller implements ActionListener {
     //Select players buttons
     selectPlayersView.getPlayer1selectionList().addActionListener(this);
     selectPlayersView.getPlayer2selectionList().addActionListener(this);
+    selectPlayersView.getSelectPlayerButton().addActionListener(this);
+    selectPlayersView.getPlayButton().addActionListener(this);
+    selectPlayersView.getBackButton().addActionListener(this);
 
     //Commons acctions
     model.setPlayers(FileSystemHelper.getPlayersFromJSON());
@@ -86,6 +89,16 @@ public class Controller implements ActionListener {
       selectPlayersView
         .getSecondPlayerLabel()
         .setText(selectPlayersView.getPlayer2selectionList().getSelectedItem());
+    } else if (pressedButton == selectPlayersView.getSelectPlayerButton()) {
+      selectPlayersView
+        .getSecondPlayerLabel()
+        .setText(selectPlayersView.getPlayer2selectionList().getSelectedItem());
+      selectPlayersView
+        .getFirstPlayerLabel()
+        .setText(selectPlayersView.getPlayer1selectionList().getSelectedItem());
+    } else if (pressedButton == selectPlayersView.getBackButton()) {
+      mainMenuView.setVisible(true);
+      selectPlayersView.setVisible(false);
     }
   }
 }
