@@ -4,16 +4,17 @@
  */
 package cuatroenlinea.Controller;
 
-import cuatroenlinea.Entities.PlayerEntity;
 import cuatroenlinea.Helpers.FileSystemHelper;
 import cuatroenlinea.Helpers.MessageHelper;
 import cuatroenlinea.Helpers.PlayersHelper;
-import cuatroenlinea.Model.Model;
+import cuatroenlinea.Model.PlayerModel;
 import cuatroenlinea.View.CreateNewPlayerView;
 import cuatroenlinea.View.MainMenuView;
 import cuatroenlinea.View.SelectPlayersView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -24,15 +25,15 @@ public class Controller implements ActionListener {
   private MainMenuView mainMenuView;
   private CreateNewPlayerView createNewPlayerView;
   private SelectPlayersView selectPlayersView;
-  private Model model;
+  private ArrayList<PlayerModel> players;
+  private PlayerModel firstPlayer;
+  private PlayerModel secondPlayer;
 
   public Controller(
-    Model model,
     MainMenuView mainMenuView,
     CreateNewPlayerView createNewPlayerView,
     SelectPlayersView selectPlayersView
   ) {
-    this.model = model;
     this.mainMenuView = mainMenuView;
     this.createNewPlayerView = createNewPlayerView;
     this.selectPlayersView = selectPlayersView;
@@ -57,7 +58,7 @@ public class Controller implements ActionListener {
     selectPlayersView.getPlayButton().addActionListener(this);
     selectPlayersView.getBackButton().addActionListener(this);
     //Commons acctions
-    model.setPlayers(FileSystemHelper.getPlayersFromJSON());
+    players = FileSystemHelper.getPlayersFromJSON();
 
     mainMenuView.setVisible(true);
   }
@@ -75,7 +76,7 @@ public class Controller implements ActionListener {
       if (
         PlayersHelper.willBeDupplictedPlayers(
           createNewPlayerView.getCreateNewPlayerTextField().getText(),
-          model.getPlayers()
+          players
         )
       ) {
         JOptionPane.showMessageDialog(null, "Ese nombre ya esta en uso");
@@ -83,7 +84,7 @@ public class Controller implements ActionListener {
       }
       FileSystemHelper.saveNewPlayer(
         createNewPlayerView.getCreateNewPlayerTextField().getText(),
-        model.getPlayers()
+        players
       );
       mainMenuView.setVisible(true);
       createNewPlayerView.setVisible(false);
@@ -91,7 +92,7 @@ public class Controller implements ActionListener {
       mainMenuView.setVisible(true);
       createNewPlayerView.setVisible(false);
     } else if (pressedButton == mainMenuView.getPlayButton()) {
-      for (PlayerEntity player : model.getPlayers()) {
+      for (PlayerModel player : players) {
         selectPlayersView.getPlayer1selectionList().add(player.getName());
         selectPlayersView.getPlayer2selectionList().add(player.getName());
       }
@@ -118,7 +119,9 @@ public class Controller implements ActionListener {
     } else if (pressedButton == selectPlayersView.getPlayButton()) {
       String firstName = selectPlayersView.getFirstPlayerLabel().getText();
       String secondName = selectPlayersView.getSecondPlayerLabel().getText();
-      MessageHelper.validateOponents(firstName, secondName);
+      if(MessageHelper.validateOponents(firstName, secondName)){
+        
+      }
     }
   }
 }

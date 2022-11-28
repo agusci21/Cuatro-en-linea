@@ -29,16 +29,13 @@ public class MessageHelper {
         null,
         "No puede seleccionar dos veces el mismo jugador"
       );
-      return true;
+      return false;
     }
-    return false;
+    return true;
   }
 
-  public static void validateOponents(String firstName,
+  public static boolean validateOponents(String firstName,
   String secondName){
-
-    if(validateNotEmptyPlayers(firstName, secondName)){
-        validateNotAutoOponent(firstName, secondName);
-    }
+    return validateNotEmptyPlayers(firstName, secondName) && validateNotAutoOponent(firstName, secondName);
   }
 }

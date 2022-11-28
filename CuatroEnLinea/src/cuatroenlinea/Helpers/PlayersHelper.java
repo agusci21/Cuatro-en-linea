@@ -1,11 +1,12 @@
 package cuatroenlinea.Helpers;
 
-import cuatroenlinea.Entities.PlayerEntity;
 import java.util.ArrayList;
+
+import cuatroenlinea.Model.PlayerModel;
 
 public abstract class PlayersHelper {
 
-  public static boolean areDupplicatedPlayers(ArrayList<PlayerEntity> players) {
+  public static boolean areDupplicatedPlayers(ArrayList<PlayerModel> players) {
     boolean areDupplicatedPlayers = false;
     for (int i = 0; i < players.size() - 1; i++) {
       String firstName = players.get(i).getName();
@@ -22,9 +23,9 @@ public abstract class PlayersHelper {
 
   public static boolean willBeDupplictedPlayers(
     String name,
-    ArrayList<PlayerEntity> players
+    ArrayList<PlayerModel> players
   ) {
-    for (PlayerEntity player : players) {
+    for (PlayerModel player : players) {
       if (player.getName().equals(name)) {
         return true;
       }
@@ -32,11 +33,11 @@ public abstract class PlayersHelper {
     return false;
   }
 
-  public static PlayerEntity getPlayerByName(
+  public static PlayerModel getPlayerByName(
     String name,
-    ArrayList<PlayerEntity> players
+    ArrayList<PlayerModel> players
   ) {
-    for (PlayerEntity player : players) {
+    for (PlayerModel player : players) {
       if (player.getName().equals(name)) {
         return player;
       }

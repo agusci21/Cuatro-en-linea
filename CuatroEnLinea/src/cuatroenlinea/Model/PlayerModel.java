@@ -1,12 +1,12 @@
-package cuatroenlinea.Entities;
+package cuatroenlinea.Model;
 
 import org.json.JSONObject;
 
-public class PlayerEntity {
+public class PlayerModel {
   private String name;
   private int scores;
 
-  public PlayerEntity(String name, int scores) {
+  public PlayerModel(String name, int scores) {
     this.name = name;
     this.scores = scores;
   }
@@ -31,8 +31,8 @@ public class PlayerEntity {
     return "{\"name\": \"" + name + "\", \"scores\" : " + scores + "}";
   }
 
-  public static PlayerEntity fromJson(JSONObject obj) {
-    return new PlayerEntity(obj.getString("name"), obj.getInt("scores"));
+  public static PlayerModel fromJson(JSONObject obj) {
+    return new PlayerModel(obj.getString("name"), obj.getInt("scores"));
   }
 
   @Override

@@ -1,4 +1,5 @@
 *.class
 data/
 /CuatroEnLinea/build/
+*players.json
 *.jar

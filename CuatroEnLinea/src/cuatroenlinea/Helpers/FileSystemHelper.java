@@ -7,19 +7,19 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import cuatroenlinea.Entities.PlayerEntity;
+import cuatroenlinea.Model.PlayerModel;
 
 public abstract class FileSystemHelper {
   static final String currentDir =
-    System.getProperty("user.dir") + "/CuatroEnLinea/data/";
+    System.getProperty("user.dir") + "\\CuatroEnLinea\\data";
 
   public static void saveNewPlayer(
     String userName,
-    ArrayList<PlayerEntity> currentPlayers
+    ArrayList<PlayerModel> currentPlayers
   ) {
     try {
       FileWriter fWriter = new FileWriter(currentDir + "players.json");
-      PlayerEntity newPlayer = new PlayerEntity(userName, 0);
+      PlayerModel newPlayer = new PlayerModel(userName, 0);
       currentPlayers.add(newPlayer);
 
       String players = "";
@@ -41,7 +41,7 @@ public abstract class FileSystemHelper {
   public static void createPlayersJSON() {
     if (!fileExists(currentDir + "\\players.json")) {
       try {
-        FileWriter fWriter = new FileWriter(currentDir + "players.json");
+        FileWriter fWriter = new FileWriter(currentDir + "\\players.json");
         fWriter.write("{\"players\":[]}");
         fWriter.close();
       } catch (IOException e) {
@@ -52,7 +52,7 @@ public abstract class FileSystemHelper {
 
   public static String getPlayerJSONString() {
     try {
-      FileReader fReader = new FileReader(currentDir + "\\players.json");
+      FileReader fReader = new FileReader(currentDir + "players.json");
       String jsonString = "";
 
       int character = fReader.read();
@@ -66,15 +66,15 @@ public abstract class FileSystemHelper {
     return "";
   }
 
-  public static ArrayList<PlayerEntity> getPlayersFromJSON() {
+  public static ArrayList<PlayerModel> getPlayersFromJSON() {
     String jsonString = getPlayerJSONString();
     JSONObject playersJson = new JSONObject(jsonString);
     JSONArray playersArray = (JSONArray) playersJson.get("players");
-    ArrayList<PlayerEntity> players = new ArrayList<PlayerEntity>();
+    ArrayList<PlayerModel> players = new ArrayList<PlayerModel>();
 
     for (int i = 0; i < playersArray.length(); i++) {
       JSONObject playerObject = (JSONObject) playersArray.get(i);
-      players.add(PlayerEntity.fromJson(playerObject));
+      players.add(PlayerModel.fromJson(playerObject));
     }
 
     return players;
