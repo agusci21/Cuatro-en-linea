@@ -6,6 +6,7 @@ package cuatroenlinea;
 
 import cuatroenlinea.Controller.Controller;
 import cuatroenlinea.Helpers.FileSystemHelper;
+import cuatroenlinea.Helpers.PlayersHelper;
 import cuatroenlinea.Model.Model;
 import cuatroenlinea.View.CreateNewPlayerView;
 import cuatroenlinea.View.MainMenuView;
@@ -30,5 +31,6 @@ public class CuatroEnLinea {
       selectPlayersView
     );
     controller.init();
+    System.out.println(PlayersHelper.areDupplicatedPlayers(model.getPlayers()));
   }
 }

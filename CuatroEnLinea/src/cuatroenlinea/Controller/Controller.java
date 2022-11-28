@@ -6,6 +6,7 @@ package cuatroenlinea.Controller;
 
 import cuatroenlinea.Entities.PlayerEntity;
 import cuatroenlinea.Helpers.FileSystemHelper;
+import cuatroenlinea.Helpers.MessageHelper;
 import cuatroenlinea.Model.Model;
 import cuatroenlinea.View.CreateNewPlayerView;
 import cuatroenlinea.View.MainMenuView;
@@ -99,6 +100,10 @@ public class Controller implements ActionListener {
     } else if (pressedButton == selectPlayersView.getBackButton()) {
       mainMenuView.setVisible(true);
       selectPlayersView.setVisible(false);
+    } else if (pressedButton == selectPlayersView.getPlayButton()) {
+      String firstName = selectPlayersView.getFirstPlayerLabel().getText();
+      String secondName = selectPlayersView.getSecondPlayerLabel().getText();
+      MessageHelper.validateOponents(firstName, secondName);
     }
   }
 }

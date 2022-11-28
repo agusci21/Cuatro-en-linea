@@ -36,8 +36,6 @@ public class SelectPlayersView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        list2 = new java.awt.List();
-        list1 = new java.awt.List();
         jPanel1 = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
         player1selectionList = new java.awt.List();
@@ -160,8 +158,6 @@ public class SelectPlayersView extends javax.swing.JFrame {
     private javax.swing.JButton backButton;
     private javax.swing.JLabel firstPlayerLabel;
     private javax.swing.JPanel jPanel1;
-    private java.awt.List list1;
-    private java.awt.List list2;
     private javax.swing.JButton playButton;
     private javax.swing.JLabel player1constLabel;
     private java.awt.List player1selectionList;
