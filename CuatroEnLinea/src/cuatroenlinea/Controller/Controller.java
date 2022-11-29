@@ -9,12 +9,12 @@ import cuatroenlinea.Helpers.MessageHelper;
 import cuatroenlinea.Helpers.PlayersHelper;
 import cuatroenlinea.Model.PlayerModel;
 import cuatroenlinea.View.CreateNewPlayerView;
+import cuatroenlinea.View.GameView;
 import cuatroenlinea.View.MainMenuView;
 import cuatroenlinea.View.SelectPlayersView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
 
 /**
@@ -25,18 +25,22 @@ public class Controller implements ActionListener {
   private MainMenuView mainMenuView;
   private CreateNewPlayerView createNewPlayerView;
   private SelectPlayersView selectPlayersView;
+  private GameView gameView;
   private ArrayList<PlayerModel> players;
   private PlayerModel firstPlayer;
   private PlayerModel secondPlayer;
 
+
   public Controller(
     MainMenuView mainMenuView,
     CreateNewPlayerView createNewPlayerView,
-    SelectPlayersView selectPlayersView
+    SelectPlayersView selectPlayersView,
+    GameView gameView
   ) {
     this.mainMenuView = mainMenuView;
     this.createNewPlayerView = createNewPlayerView;
     this.selectPlayersView = selectPlayersView;
+    this.gameView = gameView;
   }
 
   public void init() {
@@ -57,6 +61,10 @@ public class Controller implements ActionListener {
     selectPlayersView.getSelectPlayerButton().addActionListener(this);
     selectPlayersView.getPlayButton().addActionListener(this);
     selectPlayersView.getBackButton().addActionListener(this);
+
+    //Game view
+    setGameButtonsActions();
+
     //Commons acctions
     players = FileSystemHelper.getPlayersFromJSON();
 
@@ -120,8 +128,21 @@ public class Controller implements ActionListener {
       String firstName = selectPlayersView.getFirstPlayerLabel().getText();
       String secondName = selectPlayersView.getSecondPlayerLabel().getText();
       if(MessageHelper.validateOponents(firstName, secondName)){
-        
+        firstPlayer = PlayersHelper.getPlayerByName(firstName, players);
+        secondPlayer = PlayersHelper.getPlayerByName(secondName, players);
+        selectPlayersView.setVisible(false);
+        gameView.setVisible(true);
       }
     }
+  }
+
+  private void setGameButtonsActions(){
+    gameView.gameBtn1.addActionListener(this);
+    gameView.gameBtn2.addActionListener(this);
+    gameView.gameBtn3.addActionListener(this);
+    gameView.gameBtn4.addActionListener(this);
+    gameView.gameBtn5.addActionListener(this);
+    gameView.gameBtn6.addActionListener(this);
+    gameView.gameBtn7.addActionListener(this);
   }
 }
