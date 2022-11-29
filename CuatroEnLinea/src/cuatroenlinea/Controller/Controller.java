@@ -12,10 +12,16 @@ import cuatroenlinea.View.CreateNewPlayerView;
 import cuatroenlinea.View.GameView;
 import cuatroenlinea.View.MainMenuView;
 import cuatroenlinea.View.SelectPlayersView;
+
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
+
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -29,7 +35,9 @@ public class Controller implements ActionListener {
   private ArrayList<PlayerModel> players;
   private PlayerModel firstPlayer;
   private PlayerModel secondPlayer;
-
+  private JPanel[][] matrix = new JPanel[6][7];
+  private ArrayList<JButton> gameButtons = new ArrayList<JButton>();
+  private boolean isFirstPlayerTurn = true;
 
   public Controller(
     MainMenuView mainMenuView,
@@ -41,6 +49,7 @@ public class Controller implements ActionListener {
     this.createNewPlayerView = createNewPlayerView;
     this.selectPlayersView = selectPlayersView;
     this.gameView = gameView;
+
   }
 
   public void init() {
@@ -64,6 +73,7 @@ public class Controller implements ActionListener {
 
     //Game view
     setGameButtonsActions();
+    initMatrix();
 
     //Commons acctions
     players = FileSystemHelper.getPlayersFromJSON();
@@ -133,6 +143,8 @@ public class Controller implements ActionListener {
         selectPlayersView.setVisible(false);
         gameView.setVisible(true);
       }
+    }else if(gameButtons.contains(pressedButton)){
+      handleGameButtons(pressedButton);
     }
   }
 
@@ -144,5 +156,67 @@ public class Controller implements ActionListener {
     gameView.gameBtn5.addActionListener(this);
     gameView.gameBtn6.addActionListener(this);
     gameView.gameBtn7.addActionListener(this);
+
+    gameButtons.add(gameView.gameBtn1);
+    gameButtons.add(gameView.gameBtn2);
+    gameButtons.add(gameView.gameBtn3);
+    gameButtons.add(gameView.gameBtn4);
+    gameButtons.add(gameView.gameBtn5);
+    gameButtons.add(gameView.gameBtn6);
+    gameButtons.add(gameView.gameBtn7);
+    
+  }
+
+  private void handleGameButtons(Object pressedButton){
+    int index = gameButtons.indexOf(pressedButton) + 1;
+    System.out.println(index);
+  }
+
+  private void initMatrix(){
+
+    ArrayList<JPanel> panels = new ArrayList<JPanel>();
+    /*public javax.swing.JPanel panel11;
+    public javax.swing.JPanel panel12;
+    public javax.swing.JPanel panel13;
+    public javax.swing.JPanel panel14;
+    public javax.swing.JPanel panel15;
+    public javax.swing.JPanel panel16;
+    public javax.swing.JPanel panel17;
+    public javax.swing.JPanel panel21;
+    public javax.swing.JPanel panel22;
+    public javax.swing.JPanel panel23;
+    public javax.swing.JPanel panel24;
+    public javax.swing.JPanel panel25;
+    public javax.swing.JPanel panel26;
+    public javax.swing.JPanel panel27;
+    public javax.swing.JPanel panel31;
+    public javax.swing.JPanel panel32;
+    public javax.swing.JPanel panel33;
+    public javax.swing.JPanel panel34;
+    public javax.swing.JPanel panel35;
+    public javax.swing.JPanel panel36;
+    public javax.swing.JPanel panel37;
+    public javax.swing.JPanel panel41;
+    public javax.swing.JPanel panel42;
+    public javax.swing.JPanel panel43;
+    public javax.swing.JPanel panel44;
+    public javax.swing.JPanel panel45;
+    public javax.swing.JPanel panel46;
+    public javax.swing.JPanel panel47;
+    public javax.swing.JPanel panel51;
+    public javax.swing.JPanel panel52;
+    public javax.swing.JPanel panel53;
+    public javax.swing.JPanel panel54;
+    public javax.swing.JPanel panel55;
+    public javax.swing.JPanel panel56;
+    public javax.swing.JPanel panel57;
+    public javax.swing.JPanel panel61;
+    public javax.swing.JPanel panel62;
+    public javax.swing.JPanel panel63;
+    public javax.swing.JPanel panel64;
+    public javax.swing.JPanel panel65;
+    public javax.swing.JPanel panel66;
+    public javax.swing.JPanel panel67;*/
+    
   }
 }

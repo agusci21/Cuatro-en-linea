@@ -77,18 +77,25 @@ public class GameView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        gameBtn1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         gameBtn1.setText("1");
 
+        gameBtn2.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         gameBtn2.setText("2");
 
+        gameBtn4.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         gameBtn4.setText("3");
 
+        gameBtn3.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         gameBtn3.setText("4");
 
+        gameBtn5.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         gameBtn5.setText("5");
 
+        gameBtn6.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         gameBtn6.setText("6");
 
+        gameBtn7.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         gameBtn7.setText("7");
 
         panel17.setBackground(new java.awt.Color(102, 255, 255));
@@ -789,7 +796,7 @@ public class GameView extends javax.swing.JFrame {
                     .addComponent(panel47, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panel57, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panel67, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(214, Short.MAX_VALUE))
+                .addContainerGap(274, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -894,7 +901,7 @@ public class GameView extends javax.swing.JFrame {
                         .addComponent(panel52, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panel62, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
 
         pack();
