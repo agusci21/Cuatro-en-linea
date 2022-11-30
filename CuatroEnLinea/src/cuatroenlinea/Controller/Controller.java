@@ -174,6 +174,39 @@ public class Controller implements ActionListener {
         isFirstPlayerTurn ? Color.red : Color.blue
       );
     isFirstPlayerTurn = !isFirstPlayerTurn;
+    // System.out.println();
+    // System.out.println();
+
+    // System.out.println(veryficateWinner());
+
+    // System.out.println();
+
+    // for (int i = 0; i < 6; i++) {
+    //   for (int j = 0; j < 7; j++) {
+    //     System.out.print(pointMatrix[j][i]);
+    //   }
+    //   System.out.println();
+    // }
+  }
+
+  private boolean veryficateWinner() {
+    return verticalVerification();
+  }
+
+  private boolean verticalVerification() {
+    boolean winner = false;
+    for (int i = 0; i < 7; i++) {
+      String pattenBuild = "";
+      int[] line = pointMatrix[i];
+      for (int j = 0; j < line.length; j++) {
+        pattenBuild += "" + line[j];
+      }
+      System.out.println(pattenBuild);
+      if (pattenBuild.contains("1111") || pattenBuild.contains("2222")) {
+        winner = true;
+      }
+    }
+    return winner;
   }
 
   private void initMatrix() {
