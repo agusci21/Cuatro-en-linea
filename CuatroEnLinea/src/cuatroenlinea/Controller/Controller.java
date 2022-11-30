@@ -16,7 +16,6 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -33,7 +32,8 @@ public class Controller implements ActionListener {
   private ArrayList<PlayerModel> players;
   private PlayerModel firstPlayer;
   private PlayerModel secondPlayer;
-  private ArrayList<ArrayList<JPanel>> matrix;
+  private JPanel[][] panels;
+  private int[][] pointMatrix;
   private ArrayList<JButton> gameButtons = new ArrayList<JButton>();
   private boolean isFirstPlayerTurn = true;
 
@@ -70,7 +70,6 @@ public class Controller implements ActionListener {
 
     //Game view
     setGameButtonsActions();
-    initMatrix();
 
     //Commons acctions
     players = FileSystemHelper.getPlayersFromJSON();
@@ -165,71 +164,80 @@ public class Controller implements ActionListener {
   }
 
   private void handleGameButtons(Object pressedButton) {
-    int index = gameButtons.indexOf(pressedButton) + 1;
-    System.out.println(index);
+    int index = gameButtons.indexOf(pressedButton);
+    int firstFreePosition = getFirstEmptyPanel(pointMatrix[index]);
+
+    if (firstFreePosition == -1) return;
+
+    pointMatrix[index][firstFreePosition] = isFirstPlayerTurn ? 1 : 2;
+    panels[index][firstFreePosition].setBackground(
+        isFirstPlayerTurn ? Color.red : Color.blue
+      );
+    isFirstPlayerTurn = !isFirstPlayerTurn;
   }
 
   private void initMatrix() {
-    ArrayList<ArrayList<JPanel>> panels = new ArrayList<ArrayList<JPanel>>();
+    JPanel[][] locPanels = new JPanel[7][6];
+    pointMatrix = new int[7][6];
 
-    ArrayList<JPanel> panels1 = new ArrayList<JPanel>();
-    ArrayList<JPanel> panels2 = new ArrayList<JPanel>();
-    ArrayList<JPanel> panels3 = new ArrayList<JPanel>();
-    ArrayList<JPanel> panels4 = new ArrayList<JPanel>();
-    ArrayList<JPanel> panels5 = new ArrayList<JPanel>();
-    ArrayList<JPanel> panels6 = new ArrayList<JPanel>();
+    for (int i = 0; i < 7; i++) {
+      for (int j = 0; j < 6; j++) {
+        pointMatrix[i][j] = 0;
+      }
+    }
 
-    panels1.add(gameView.panel11);
-    panels1.add(gameView.panel12);
-    panels1.add(gameView.panel13);
-    panels1.add(gameView.panel14);
-    panels1.add(gameView.panel15);
-    panels1.add(gameView.panel16);
-    panels1.add(gameView.panel17);
-    panels2.add(gameView.panel21);
-    panels2.add(gameView.panel22);
-    panels2.add(gameView.panel23);
-    panels2.add(gameView.panel24);
-    panels2.add(gameView.panel25);
-    panels2.add(gameView.panel26);
-    panels2.add(gameView.panel27);
-    panels3.add(gameView.panel31);
-    panels3.add(gameView.panel32);
-    panels3.add(gameView.panel33);
-    panels3.add(gameView.panel34);
-    panels3.add(gameView.panel35);
-    panels3.add(gameView.panel36);
-    panels3.add(gameView.panel37);
-    panels4.add(gameView.panel41);
-    panels4.add(gameView.panel42);
-    panels4.add(gameView.panel43);
-    panels4.add(gameView.panel44);
-    panels4.add(gameView.panel45);
-    panels4.add(gameView.panel46);
-    panels4.add(gameView.panel47);
-    panels5.add(gameView.panel51);
-    panels5.add(gameView.panel52);
-    panels5.add(gameView.panel53);
-    panels5.add(gameView.panel54);
-    panels5.add(gameView.panel55);
-    panels5.add(gameView.panel56);
-    panels5.add(gameView.panel57);
-    panels6.add(gameView.panel61);
-    panels6.add(gameView.panel62);
-    panels6.add(gameView.panel63);
-    panels6.add(gameView.panel64);
-    panels6.add(gameView.panel65);
-    panels6.add(gameView.panel66);
-    panels6.add(gameView.panel67);
+    locPanels[1 - 1][1 - 1] = gameView.panel11;
+    locPanels[2 - 1][1 - 1] = gameView.panel12;
+    locPanels[3 - 1][1 - 1] = gameView.panel13;
+    locPanels[4 - 1][1 - 1] = gameView.panel14;
+    locPanels[5 - 1][1 - 1] = gameView.panel15;
+    locPanels[6 - 1][1 - 1] = gameView.panel16;
+    locPanels[7 - 1][1 - 1] = gameView.panel17;
+    locPanels[1 - 1][2 - 1] = gameView.panel21;
+    locPanels[2 - 1][2 - 1] = gameView.panel22;
+    locPanels[3 - 1][2 - 1] = gameView.panel23;
+    locPanels[4 - 1][2 - 1] = gameView.panel24;
+    locPanels[5 - 1][2 - 1] = gameView.panel25;
+    locPanels[6 - 1][2 - 1] = gameView.panel26;
+    locPanels[7 - 1][2 - 1] = gameView.panel27;
+    locPanels[1 - 1][3 - 1] = gameView.panel31;
+    locPanels[2 - 1][3 - 1] = gameView.panel32;
+    locPanels[3 - 1][3 - 1] = gameView.panel33;
+    locPanels[4 - 1][3 - 1] = gameView.panel34;
+    locPanels[5 - 1][3 - 1] = gameView.panel35;
+    locPanels[6 - 1][3 - 1] = gameView.panel36;
+    locPanels[7 - 1][3 - 1] = gameView.panel37;
+    locPanels[1 - 1][4 - 1] = gameView.panel41;
+    locPanels[2 - 1][4 - 1] = gameView.panel42;
+    locPanels[3 - 1][4 - 1] = gameView.panel43;
+    locPanels[4 - 1][4 - 1] = gameView.panel44;
+    locPanels[5 - 1][4 - 1] = gameView.panel45;
+    locPanels[6 - 1][4 - 1] = gameView.panel46;
+    locPanels[7 - 1][4 - 1] = gameView.panel47;
+    locPanels[1 - 1][5 - 1] = gameView.panel51;
+    locPanels[2 - 1][5 - 1] = gameView.panel52;
+    locPanels[3 - 1][5 - 1] = gameView.panel53;
+    locPanels[4 - 1][5 - 1] = gameView.panel54;
+    locPanels[5 - 1][5 - 1] = gameView.panel55;
+    locPanels[6 - 1][5 - 1] = gameView.panel56;
+    locPanels[7 - 1][5 - 1] = gameView.panel57;
+    locPanels[1 - 1][6 - 1] = gameView.panel61;
+    locPanels[2 - 1][6 - 1] = gameView.panel62;
+    locPanels[3 - 1][6 - 1] = gameView.panel63;
+    locPanels[4 - 1][6 - 1] = gameView.panel64;
+    locPanels[5 - 1][6 - 1] = gameView.panel65;
+    locPanels[6 - 1][6 - 1] = gameView.panel66;
+    locPanels[7 - 1][6 - 1] = gameView.panel67;
 
-    panels.add(panels1);
-    panels.add(panels2);
-    panels.add(panels3);
-    panels.add(panels4);
-    panels.add(panels5);
-    panels.add(panels6);
+    panels = locPanels;
+  }
 
-    matrix = panels;
-
+  private int getFirstEmptyPanel(int[] list) {
+    for (int i = 5; i >= 0; i--) {
+      if (list[i] == 0) {
+        return i;
+      }
+    }
+    return -1;
   }
 }
