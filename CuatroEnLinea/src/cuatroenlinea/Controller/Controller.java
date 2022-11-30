@@ -12,13 +12,11 @@ import cuatroenlinea.View.CreateNewPlayerView;
 import cuatroenlinea.View.GameView;
 import cuatroenlinea.View.MainMenuView;
 import cuatroenlinea.View.SelectPlayersView;
-
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -35,7 +33,7 @@ public class Controller implements ActionListener {
   private ArrayList<PlayerModel> players;
   private PlayerModel firstPlayer;
   private PlayerModel secondPlayer;
-  private JPanel[][] matrix = new JPanel[6][7];
+  private ArrayList<ArrayList<JPanel>> matrix;
   private ArrayList<JButton> gameButtons = new ArrayList<JButton>();
   private boolean isFirstPlayerTurn = true;
 
@@ -49,7 +47,6 @@ public class Controller implements ActionListener {
     this.createNewPlayerView = createNewPlayerView;
     this.selectPlayersView = selectPlayersView;
     this.gameView = gameView;
-
   }
 
   public void init() {
@@ -137,18 +134,19 @@ public class Controller implements ActionListener {
     } else if (pressedButton == selectPlayersView.getPlayButton()) {
       String firstName = selectPlayersView.getFirstPlayerLabel().getText();
       String secondName = selectPlayersView.getSecondPlayerLabel().getText();
-      if(MessageHelper.validateOponents(firstName, secondName)){
+      if (MessageHelper.validateOponents(firstName, secondName)) {
         firstPlayer = PlayersHelper.getPlayerByName(firstName, players);
         secondPlayer = PlayersHelper.getPlayerByName(secondName, players);
         selectPlayersView.setVisible(false);
         gameView.setVisible(true);
+        initMatrix();
       }
-    }else if(gameButtons.contains(pressedButton)){
+    } else if (gameButtons.contains(pressedButton)) {
       handleGameButtons(pressedButton);
     }
   }
 
-  private void setGameButtonsActions(){
+  private void setGameButtonsActions() {
     gameView.gameBtn1.addActionListener(this);
     gameView.gameBtn2.addActionListener(this);
     gameView.gameBtn3.addActionListener(this);
@@ -164,59 +162,74 @@ public class Controller implements ActionListener {
     gameButtons.add(gameView.gameBtn5);
     gameButtons.add(gameView.gameBtn6);
     gameButtons.add(gameView.gameBtn7);
-    
   }
 
-  private void handleGameButtons(Object pressedButton){
+  private void handleGameButtons(Object pressedButton) {
     int index = gameButtons.indexOf(pressedButton) + 1;
     System.out.println(index);
   }
 
-  private void initMatrix(){
+  private void initMatrix() {
+    ArrayList<ArrayList<JPanel>> panels = new ArrayList<ArrayList<JPanel>>();
 
-    ArrayList<JPanel> panels = new ArrayList<JPanel>();
-    /*public javax.swing.JPanel panel11;
-    public javax.swing.JPanel panel12;
-    public javax.swing.JPanel panel13;
-    public javax.swing.JPanel panel14;
-    public javax.swing.JPanel panel15;
-    public javax.swing.JPanel panel16;
-    public javax.swing.JPanel panel17;
-    public javax.swing.JPanel panel21;
-    public javax.swing.JPanel panel22;
-    public javax.swing.JPanel panel23;
-    public javax.swing.JPanel panel24;
-    public javax.swing.JPanel panel25;
-    public javax.swing.JPanel panel26;
-    public javax.swing.JPanel panel27;
-    public javax.swing.JPanel panel31;
-    public javax.swing.JPanel panel32;
-    public javax.swing.JPanel panel33;
-    public javax.swing.JPanel panel34;
-    public javax.swing.JPanel panel35;
-    public javax.swing.JPanel panel36;
-    public javax.swing.JPanel panel37;
-    public javax.swing.JPanel panel41;
-    public javax.swing.JPanel panel42;
-    public javax.swing.JPanel panel43;
-    public javax.swing.JPanel panel44;
-    public javax.swing.JPanel panel45;
-    public javax.swing.JPanel panel46;
-    public javax.swing.JPanel panel47;
-    public javax.swing.JPanel panel51;
-    public javax.swing.JPanel panel52;
-    public javax.swing.JPanel panel53;
-    public javax.swing.JPanel panel54;
-    public javax.swing.JPanel panel55;
-    public javax.swing.JPanel panel56;
-    public javax.swing.JPanel panel57;
-    public javax.swing.JPanel panel61;
-    public javax.swing.JPanel panel62;
-    public javax.swing.JPanel panel63;
-    public javax.swing.JPanel panel64;
-    public javax.swing.JPanel panel65;
-    public javax.swing.JPanel panel66;
-    public javax.swing.JPanel panel67;*/
-    
+    ArrayList<JPanel> panels1 = new ArrayList<JPanel>();
+    ArrayList<JPanel> panels2 = new ArrayList<JPanel>();
+    ArrayList<JPanel> panels3 = new ArrayList<JPanel>();
+    ArrayList<JPanel> panels4 = new ArrayList<JPanel>();
+    ArrayList<JPanel> panels5 = new ArrayList<JPanel>();
+    ArrayList<JPanel> panels6 = new ArrayList<JPanel>();
+
+    panels1.add(gameView.panel11);
+    panels1.add(gameView.panel12);
+    panels1.add(gameView.panel13);
+    panels1.add(gameView.panel14);
+    panels1.add(gameView.panel15);
+    panels1.add(gameView.panel16);
+    panels1.add(gameView.panel17);
+    panels2.add(gameView.panel21);
+    panels2.add(gameView.panel22);
+    panels2.add(gameView.panel23);
+    panels2.add(gameView.panel24);
+    panels2.add(gameView.panel25);
+    panels2.add(gameView.panel26);
+    panels2.add(gameView.panel27);
+    panels3.add(gameView.panel31);
+    panels3.add(gameView.panel32);
+    panels3.add(gameView.panel33);
+    panels3.add(gameView.panel34);
+    panels3.add(gameView.panel35);
+    panels3.add(gameView.panel36);
+    panels3.add(gameView.panel37);
+    panels4.add(gameView.panel41);
+    panels4.add(gameView.panel42);
+    panels4.add(gameView.panel43);
+    panels4.add(gameView.panel44);
+    panels4.add(gameView.panel45);
+    panels4.add(gameView.panel46);
+    panels4.add(gameView.panel47);
+    panels5.add(gameView.panel51);
+    panels5.add(gameView.panel52);
+    panels5.add(gameView.panel53);
+    panels5.add(gameView.panel54);
+    panels5.add(gameView.panel55);
+    panels5.add(gameView.panel56);
+    panels5.add(gameView.panel57);
+    panels6.add(gameView.panel61);
+    panels6.add(gameView.panel62);
+    panels6.add(gameView.panel63);
+    panels6.add(gameView.panel64);
+    panels6.add(gameView.panel65);
+    panels6.add(gameView.panel66);
+    panels6.add(gameView.panel67);
+
+    panels.add(panels1);
+    panels.add(panels2);
+    panels.add(panels3);
+    panels.add(panels4);
+    panels.add(panels5);
+    panels.add(panels6);
+
+    matrix = panels;
+
   }
 }

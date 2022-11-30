@@ -1,13 +1,12 @@
 package cuatroenlinea.Helpers;
 
+import cuatroenlinea.Model.PlayerModel;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import cuatroenlinea.Model.PlayerModel;
 
 public abstract class FileSystemHelper {
   static final String currentDir =
@@ -52,7 +51,7 @@ public abstract class FileSystemHelper {
 
   public static String getPlayerJSONString() {
     try {
-      FileReader fReader = new FileReader(currentDir + "players.json");
+      FileReader fReader = new FileReader(currentDir + "\\players.json");
       String jsonString = "";
 
       int character = fReader.read();
