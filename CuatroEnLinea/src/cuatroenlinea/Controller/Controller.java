@@ -177,14 +177,16 @@ public class Controller implements ActionListener {
       JOptionPane.showMessageDialog(
         null,
         "Felicitaciones jugador " + (isFirstPlayerTurn ? 1 : 2) + " has ganado"
-      )
-      ;
+      );
+      mainMenuView.setVisible(true);
+      gameView.setVisible(false);
     }
     isFirstPlayerTurn = !isFirstPlayerTurn;
+    getDiagonalsFromMatrix(pointMatrix);
   }
 
   private boolean veryficateWinner() {
-    return verticalVerification() || horizontalVerification();
+    return verticalVerification()|| horizontalVerification() || veryfyDiagonals();
   }
 
   private boolean verticalVerification() {
@@ -218,6 +220,23 @@ public class Controller implements ActionListener {
     }
 
     return winner;
+  }
+
+  private boolean veryfyDiagonals() {
+    //System.out.print("\033[H\033[2J");
+
+    for (int y = 0; y <= pointMatrix.length - 4; y++) {
+      String diagonal = "";
+      for (int x = 0; x < pointMatrix[0].length; x++) {
+        if(x + y > 6) continue;
+        diagonal += pointMatrix[x + y][x];
+      }
+      if(diagonal.contains("1111") || diagonal.contains("2222")){
+        return true;
+      }
+    }
+
+    return false;
   }
 
   private void initMatrix() {
@@ -285,7 +304,7 @@ public class Controller implements ActionListener {
     return -1;
   }
 
-  public static int[][] transposeMatrix(int[][] matrix) {
+  private static int[][] transposeMatrix(int[][] matrix) {
     int[][] transposed = new int[matrix[0].length][matrix.length];
 
     for (int i = 0; i < matrix.length; i++) {
@@ -294,5 +313,10 @@ public class Controller implements ActionListener {
       }
     }
     return transposed;
+  }
+
+  private static int[][] getDiagonalsFromMatrix(int[][] matrix) {
+    int diagonalsAcount = matrix.length - matrix[0].length;
+    return new int[1][1];
   }
 }
