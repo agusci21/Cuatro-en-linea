@@ -173,24 +173,18 @@ public class Controller implements ActionListener {
     panels[index][firstFreePosition].setBackground(
         isFirstPlayerTurn ? Color.red : Color.blue
       );
+    if (veryficateWinner()) {
+      JOptionPane.showMessageDialog(
+        null,
+        "Felicitaciones jugador " + (isFirstPlayerTurn ? 1 : 2) + " has ganado"
+      )
+      ;
+    }
     isFirstPlayerTurn = !isFirstPlayerTurn;
-    // System.out.println();
-    // System.out.println();
-
-    // System.out.println(veryficateWinner());
-
-    // System.out.println();
-
-    // for (int i = 0; i < 6; i++) {
-    //   for (int j = 0; j < 7; j++) {
-    //     System.out.print(pointMatrix[j][i]);
-    //   }
-    //   System.out.println();
-    // }
   }
 
   private boolean veryficateWinner() {
-    return verticalVerification();
+    return verticalVerification() || horizontalVerification();
   }
 
   private boolean verticalVerification() {
@@ -201,11 +195,28 @@ public class Controller implements ActionListener {
       for (int j = 0; j < line.length; j++) {
         pattenBuild += "" + line[j];
       }
-      System.out.println(pattenBuild);
       if (pattenBuild.contains("1111") || pattenBuild.contains("2222")) {
         winner = true;
       }
     }
+    return winner;
+  }
+
+  private boolean horizontalVerification() {
+    boolean winner = false;
+    int[][] matrixCpy = transposeMatrix(pointMatrix);
+
+    for (int i = 0; i < matrixCpy.length; i++) {
+      String pattenBuild = "";
+      int[] line = matrixCpy[i];
+      for (int j = 0; j < line.length; j++) {
+        pattenBuild += "" + line[j];
+      }
+      if (pattenBuild.contains("1111") || pattenBuild.contains("2222")) {
+        winner = true;
+      }
+    }
+
     return winner;
   }
 
@@ -272,5 +283,16 @@ public class Controller implements ActionListener {
       }
     }
     return -1;
+  }
+
+  public static int[][] transposeMatrix(int[][] matrix) {
+    int[][] transposed = new int[matrix[0].length][matrix.length];
+
+    for (int i = 0; i < matrix.length; i++) {
+      for (int j = 0; j < matrix[0].length; j++) {
+        transposed[j][i] = matrix[i][j];
+      }
+    }
+    return transposed;
   }
 }
