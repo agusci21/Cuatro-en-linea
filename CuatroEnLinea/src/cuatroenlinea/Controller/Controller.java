@@ -223,15 +223,28 @@ public class Controller implements ActionListener {
   }
 
   private boolean veryfyDiagonals() {
-    //System.out.print("\033[H\033[2J");
+    System.out.print("\033[H\033[2J");
 
     for (int y = 0; y <= pointMatrix.length - 4; y++) {
       String diagonal = "";
       for (int x = 0; x < pointMatrix[0].length; x++) {
-        if(x + y > 6) continue;
+        if (x + y > 6) continue;
         diagonal += pointMatrix[x + y][x];
       }
-      if(diagonal.contains("1111") || diagonal.contains("2222")){
+      if (diagonal.contains("1111") || diagonal.contains("2222")) {
+        return true;
+      }
+    }
+
+    for(int y = 0; y <= pointMatrix.length - 4; y++){
+      String diagonal = "";
+      for (int x = pointMatrix.length - 1; x >= 0; x--) {
+        int i = pointMatrix.length - 1 - x;
+        if (x - y < 0) continue;
+        if(i < 0 || i == 6) continue;
+        diagonal += pointMatrix[x - y][i];
+      }
+      if (diagonal.contains("1111") || diagonal.contains("2222")) {
         return true;
       }
     }
