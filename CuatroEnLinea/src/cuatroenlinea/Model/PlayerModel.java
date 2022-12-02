@@ -1,6 +1,5 @@
 package cuatroenlinea.Model;
 
-import org.json.JSONObject;
 
 public class PlayerModel {
   private String name;
@@ -29,10 +28,6 @@ public class PlayerModel {
 
   public String toJson() {
     return "{\"name\": \"" + name + "\", \"scores\" : " + scores + "}";
-  }
-
-  public static PlayerModel fromJson(JSONObject obj) {
-    return new PlayerModel(obj.getString("name"), obj.getInt("scores"));
   }
 
   @Override

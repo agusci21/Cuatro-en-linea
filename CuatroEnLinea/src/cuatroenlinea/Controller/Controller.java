@@ -72,7 +72,7 @@ public class Controller implements ActionListener {
     setGameButtonsActions();
 
     //Commons acctions
-    players = FileSystemHelper.getPlayersFromJSON();
+    players = FileSystemHelper.getPlayersFromTxt();
 
     mainMenuView.setVisible(true);
   }
@@ -97,8 +97,7 @@ public class Controller implements ActionListener {
         return;
       }
       FileSystemHelper.saveNewPlayer(
-        createNewPlayerView.getCreateNewPlayerTextField().getText(),
-        players
+        createNewPlayerView.getCreateNewPlayerTextField().getText()
       );
       mainMenuView.setVisible(true);
       createNewPlayerView.setVisible(false);
@@ -106,6 +105,9 @@ public class Controller implements ActionListener {
       mainMenuView.setVisible(true);
       createNewPlayerView.setVisible(false);
     } else if (pressedButton == mainMenuView.getPlayButton()) {
+      selectPlayersView.getPlayer1selectionList().removeAll();
+      selectPlayersView.getPlayer2selectionList().removeAll();
+      players = FileSystemHelper.getPlayersFromTxt();
       for (PlayerModel player : players) {
         selectPlayersView.getPlayer1selectionList().add(player.getName());
         selectPlayersView.getPlayer2selectionList().add(player.getName());
