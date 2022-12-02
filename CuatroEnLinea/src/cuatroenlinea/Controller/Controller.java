@@ -184,7 +184,6 @@ public class Controller implements ActionListener {
       gameView.setVisible(false);
     }
     isFirstPlayerTurn = !isFirstPlayerTurn;
-    getDiagonalsFromMatrix(pointMatrix);
   }
 
   private boolean veryficateWinner() {
@@ -251,6 +250,25 @@ public class Controller implements ActionListener {
       }
     }
 
+    String diagonal = "";
+        for(int i = 0; i < 4; i++){
+          int x = 3 + i ;
+          int y = 5 - i;
+          diagonal += pointMatrix[x][y] ;
+          if (diagonal.contains("1111") || diagonal.contains("2222")) {
+            return true;
+          }
+        }
+        diagonal = "";
+        for(int i = 0; i < 5; i++){
+          int x = 2 + i ;
+          int y = 5 - i;
+          diagonal += pointMatrix[x][y] ;
+          System.out.println(diagonal);
+          if (diagonal.contains("1111") || diagonal.contains("2222")) {
+            return true;
+          }
+        }
     return false;
   }
 
@@ -328,10 +346,5 @@ public class Controller implements ActionListener {
       }
     }
     return transposed;
-  }
-
-  private static int[][] getDiagonalsFromMatrix(int[][] matrix) {
-    int diagonalsAcount = matrix.length - matrix[0].length;
-    return new int[1][1];
   }
 }
