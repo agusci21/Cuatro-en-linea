@@ -18,7 +18,8 @@ public abstract class FileSystemHelper {
   ) {
     try {
       String data = getPlayerTxtString();
-      data += "," + (userName) + ","  + 0; 
+      String aux = data.isBlank() ? "" : ",";
+      data += aux + (userName) + ","  + 0; 
       FileWriter fWriter = new FileWriter(currentDir + "players.txt");
       fWriter.write(data);
       fWriter.close();
@@ -73,6 +74,10 @@ public abstract class FileSystemHelper {
    
     ArrayList<PlayerModel> players = new ArrayList<PlayerModel>();
     String data = getPlayerTxtString();
+
+    if(data.isBlank()){
+      return players;
+    }
 
     String[] pairs = data.split(",");
 
