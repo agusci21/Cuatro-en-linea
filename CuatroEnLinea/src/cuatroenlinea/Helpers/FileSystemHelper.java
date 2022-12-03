@@ -29,6 +29,19 @@ public abstract class FileSystemHelper {
     }
   }
 
+  public static void refreshPoints(ArrayList<PlayerModel> players){
+    String data = "";
+    for(PlayerModel player : players){
+      data += player.getName() + "," + player.getScores() + ",";
+    }
+    try {
+      FileWriter fWriter = new FileWriter(currentDir + "players.txt");
+      fWriter.write(data);
+      fWriter.close();
+    } catch (IOException e) {}
+
+  }
+
   public static void createPlayersTxt() {
     try {
       

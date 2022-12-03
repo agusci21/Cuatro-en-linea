@@ -151,6 +151,15 @@ public class Controller implements ActionListener {
     }
   }
 
+  public void resetPanelsColor(){
+      
+    for (int i = 0; i < panels.length; i++) {
+      for (int j = 0; j < panels[0].length; j++) {
+        panels[i][j].setBackground(Color.CYAN);
+      }
+    }
+  }
+
   private void setGameButtonsActions() {
     gameView.gameBtn1.addActionListener(this);
     gameView.gameBtn2.addActionListener(this);
@@ -180,13 +189,22 @@ public class Controller implements ActionListener {
         isFirstPlayerTurn ? Color.red : Color.blue
       );
     if (table.veryficateWinner()) {
+
       JOptionPane.showMessageDialog(
         null,
-        "Felicitaciones jugador " + (isFirstPlayerTurn ? 1 : 2) + " has ganado"
+        "Felicitaciones " + (isFirstPlayerTurn ? firstPlayer.getName() : secondPlayer.getName()) + " has ganado"
       );
       mainMenuView.setVisible(true);
       gameView.setVisible(false);
-      
+      if(isFirstPlayerTurn){
+        firstPlayer.incrementPoints();
+      }else{
+        secondPlayer.incrementPoints();
+      }
+      FileSystemHelper.refreshPoints(players);
+      resetPanelsColor();
+      isFirstPlayerTurn = true;
+      return;
     }
     isFirstPlayerTurn = !isFirstPlayerTurn;
   }
