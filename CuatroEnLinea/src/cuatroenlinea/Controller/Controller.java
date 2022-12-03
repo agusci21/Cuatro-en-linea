@@ -8,6 +8,7 @@ import cuatroenlinea.Helpers.FileSystemHelper;
 import cuatroenlinea.Helpers.MessageHelper;
 import cuatroenlinea.Helpers.PlayersHelper;
 import cuatroenlinea.Model.PlayerModel;
+import cuatroenlinea.Model.Table;
 import cuatroenlinea.View.CreateNewPlayerView;
 import cuatroenlinea.View.GameView;
 import cuatroenlinea.View.MainMenuView;
@@ -33,20 +34,22 @@ public class Controller implements ActionListener {
   private PlayerModel firstPlayer;
   private PlayerModel secondPlayer;
   private JPanel[][] panels;
-  private int[][] pointMatrix;
   private ArrayList<JButton> gameButtons = new ArrayList<JButton>();
   private boolean isFirstPlayerTurn = true;
+  private Table table;
 
   public Controller(
     MainMenuView mainMenuView,
     CreateNewPlayerView createNewPlayerView,
     SelectPlayersView selectPlayersView,
-    GameView gameView
+    GameView gameView,
+    Table table
   ) {
     this.mainMenuView = mainMenuView;
     this.createNewPlayerView = createNewPlayerView;
     this.selectPlayersView = selectPlayersView;
     this.gameView = gameView;
+    this.table = table;
   }
 
   public void init() {
@@ -140,7 +143,8 @@ public class Controller implements ActionListener {
         secondPlayer = PlayersHelper.getPlayerByName(secondName, players);
         selectPlayersView.setVisible(false);
         gameView.setVisible(true);
-        initMatrix();
+        table.restartPointMatrix();
+        initPanelsMatrix();
       }
     } else if (gameButtons.contains(pressedButton)) {
       handleGameButtons(pressedButton);
@@ -167,136 +171,28 @@ public class Controller implements ActionListener {
 
   private void handleGameButtons(Object pressedButton) {
     int index = gameButtons.indexOf(pressedButton);
-    int firstFreePosition = getFirstEmptyPanel(pointMatrix[index]);
+    int firstFreePosition = table.getFirstEmptyPanel(index);
 
     if (firstFreePosition == -1) return;
 
-    pointMatrix[index][firstFreePosition] = isFirstPlayerTurn ? 1 : 2;
+    table.setValueAt(isFirstPlayerTurn ? 1 : 2, index, firstFreePosition);
     panels[index][firstFreePosition].setBackground(
         isFirstPlayerTurn ? Color.red : Color.blue
       );
-    if (veryficateWinner()) {
+    if (table.veryficateWinner()) {
       JOptionPane.showMessageDialog(
         null,
         "Felicitaciones jugador " + (isFirstPlayerTurn ? 1 : 2) + " has ganado"
       );
       mainMenuView.setVisible(true);
       gameView.setVisible(false);
+      
     }
     isFirstPlayerTurn = !isFirstPlayerTurn;
   }
+  private void initPanelsMatrix(){
 
-  private boolean veryficateWinner() {
-    return verticalVerification()|| horizontalVerification() || veryfyDiagonals();
-  }
-
-  private boolean verticalVerification() {
-    boolean winner = false;
-    for (int i = 0; i < 7; i++) {
-      String pattenBuild = "";
-      int[] line = pointMatrix[i];
-      for (int j = 0; j < line.length; j++) {
-        pattenBuild += "" + line[j];
-      }
-      if (pattenBuild.contains("1111") || pattenBuild.contains("2222")) {
-        winner = true;
-      }
-    }
-    return winner;
-  }
-
-  private boolean horizontalVerification() {
-    boolean winner = false;
-    int[][] matrixCpy = transposeMatrix(pointMatrix);
-
-    for (int i = 0; i < matrixCpy.length; i++) {
-      String pattenBuild = "";
-      int[] line = matrixCpy[i];
-      for (int j = 0; j < line.length; j++) {
-        pattenBuild += "" + line[j];
-      }
-      if (pattenBuild.contains("1111") || pattenBuild.contains("2222")) {
-        winner = true;
-      }
-    }
-
-    return winner;
-  }
-
-  private boolean veryfyDiagonals() {
-    System.out.print("\033[H\033[2J");
-
-    for (int y = 0; y <= pointMatrix.length - 4; y++) {
-      String diagonal = "";
-      for (int x = 0; x < pointMatrix[0].length; x++) {
-        if (x + y > 6) continue;
-        diagonal += pointMatrix[x + y][x];
-      }
-      if (diagonal.contains("1111") || diagonal.contains("2222")) {
-        return true;
-      }
-    }
-
-    for(int y = 0; y <= pointMatrix.length - 4; y++){
-      String diagonal = "";
-      for (int x = pointMatrix.length - 1; x >= 0; x--) {
-        int i = pointMatrix.length - 1 - x;
-        if (x - y < 0) continue;
-        if(i < 0 || i == 6) continue;
-        diagonal += pointMatrix[x - y][i];
-      }
-      if (diagonal.contains("1111") || diagonal.contains("2222")) {
-        return true;
-      }
-    }
-
-    String diagonal = "";
-        for(int i = 0; i < 4; i++){
-          int x = 3 + i ;
-          int y = 5 - i;
-          diagonal += pointMatrix[x][y] ;
-          if (diagonal.contains("1111") || diagonal.contains("2222")) {
-            return true;
-          }
-        }
-        diagonal = "";
-        for(int i = 0; i < 5; i++){
-          int x = i ;
-          int y = 1 + i;
-          diagonal += pointMatrix[x][y] ;
-          if (diagonal.contains("1111") || diagonal.contains("2222")) {
-            return true;
-          }
-        }
-        for(int i = 0; i < 4; i++){
-          int x = i + 1;
-          int y = i + 2;
-          diagonal += pointMatrix[x][y] ;
-          if (diagonal.contains("1111") || diagonal.contains("2222")) {
-            return true;
-          }
-        }
-        diagonal = "";
-        for(int i = 0; i < 5; i++){
-          int x = 2 + i ;
-          int y = 5 - i;
-          diagonal += pointMatrix[x][y] ;
-          if (diagonal.contains("1111") || diagonal.contains("2222")) {
-            return true;
-          }
-        }
-    return false;
-  }
-
-  private void initMatrix() {
-    JPanel[][] locPanels = new JPanel[7][6];
-    pointMatrix = new int[7][6];
-
-    for (int i = 0; i < 7; i++) {
-      for (int j = 0; j < 6; j++) {
-        pointMatrix[i][j] = 0;
-      }
-    }
+    JPanel[][] locPanels =new JPanel[7][6];
 
     locPanels[1 - 1][1 - 1] = gameView.panel11;
     locPanels[2 - 1][1 - 1] = gameView.panel12;
@@ -342,25 +238,5 @@ public class Controller implements ActionListener {
     locPanels[7 - 1][6 - 1] = gameView.panel67;
 
     panels = locPanels;
-  }
-
-  private int getFirstEmptyPanel(int[] list) {
-    for (int i = 5; i >= 0; i--) {
-      if (list[i] == 0) {
-        return i;
-      }
-    }
-    return -1;
-  }
-
-  private static int[][] transposeMatrix(int[][] matrix) {
-    int[][] transposed = new int[matrix[0].length][matrix.length];
-
-    for (int i = 0; i < matrix.length; i++) {
-      for (int j = 0; j < matrix[0].length; j++) {
-        transposed[j][i] = matrix[i][j];
-      }
-    }
-    return transposed;
   }
 }

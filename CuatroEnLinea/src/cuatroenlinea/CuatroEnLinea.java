@@ -6,6 +6,7 @@ package cuatroenlinea;
 
 import cuatroenlinea.Controller.Controller;
 import cuatroenlinea.Helpers.FileSystemHelper;
+import cuatroenlinea.Model.Table;
 import cuatroenlinea.View.CreateNewPlayerView;
 import cuatroenlinea.View.GameView;
 import cuatroenlinea.View.MainMenuView;
@@ -21,12 +22,14 @@ public class CuatroEnLinea {
     CreateNewPlayerView createNewPlayerView = new CreateNewPlayerView();
     SelectPlayersView selectPlayersView = new SelectPlayersView();
     GameView gameView = new GameView();
+    Table table = new Table();
 
     Controller controller = new Controller(
       mainMenuView,
       createNewPlayerView,
       selectPlayersView,
-      gameView
+      gameView,
+      table
     );
     controller.init();
   }
