@@ -39,7 +39,6 @@ class Testeo {
           int x = 2 + i ;
           int y = 5 - i;
           diagonal += pointMatrix[y][x] ;
-          System.out.println(diagonal);
           if (diagonal.contains("1111") || diagonal.contains("2222")) {
             return true;
           }

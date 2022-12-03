@@ -261,10 +261,26 @@ public class Controller implements ActionListener {
         }
         diagonal = "";
         for(int i = 0; i < 5; i++){
+          int x = i ;
+          int y = 1 + i;
+          diagonal += pointMatrix[x][y] ;
+          if (diagonal.contains("1111") || diagonal.contains("2222")) {
+            return true;
+          }
+        }
+        for(int i = 0; i < 4; i++){
+          int x = i + 1;
+          int y = i + 2;
+          diagonal += pointMatrix[x][y] ;
+          if (diagonal.contains("1111") || diagonal.contains("2222")) {
+            return true;
+          }
+        }
+        diagonal = "";
+        for(int i = 0; i < 5; i++){
           int x = 2 + i ;
           int y = 5 - i;
           diagonal += pointMatrix[x][y] ;
-          System.out.println(diagonal);
           if (diagonal.contains("1111") || diagonal.contains("2222")) {
             return true;
           }
