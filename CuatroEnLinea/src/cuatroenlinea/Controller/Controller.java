@@ -97,6 +97,7 @@ public class Controller implements ActionListener {
     } else if (
       pressedButton == createNewPlayerView.getCreateNewPlayerSubmitButton()
     ) {
+      players = FileSystemHelper.getPlayersFromTxt();
       if (
         PlayersHelper.willBeDupplictedPlayers(
           createNewPlayerView.getCreateNewPlayerTextField().getText(),
