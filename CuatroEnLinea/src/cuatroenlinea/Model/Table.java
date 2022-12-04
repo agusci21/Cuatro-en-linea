@@ -1,5 +1,8 @@
 package cuatroenlinea.Model;
 
+import static java.lang.Math.min;
+import static java.lang.Math.max;
+
 public class Table {
     int[][] pointMatrix;
 
@@ -64,70 +67,34 @@ public class Table {
     }
 
     private boolean veryfyDiagonals() {
-        System.out.print("\033[H\033[2J");
 
-        for (int y = 0; y <= pointMatrix.length - 4; y++) {
-            String diagonal = "";
-            for (int x = 0; x < pointMatrix[0].length; x++) {
-                if (x + y > 6)
-                    continue;
-                diagonal += pointMatrix[x + y][x];
-            }
-            if (diagonal.contains("1111") || diagonal.contains("2222")) {
-                return true;
-            }
-        }
+        int[][] aux = pointMatrix.clone();
 
-        for (int y = 0; y <= pointMatrix.length - 4; y++) {
-            String diagonal = "";
-            for (int x = pointMatrix.length - 1; x >= 0; x--) {
-                int i = pointMatrix.length - 1 - x;
-                if (x - y < 0)
-                    continue;
-                if (i < 0 || i == 6)
-                    continue;
-                diagonal += pointMatrix[x - y][i];
+        int w = aux[0].length;
+        int h = aux.length;
+        String diagonal;
+        for (int i = 1 - w; i < h; i++){
+            diagonal = "";
+            for (int x = -min(0, i), y = max(0, i); x < w && y < h; x++, y++){
+                diagonal += aux[y][x];
             }
-            if (diagonal.contains("1111") || diagonal.contains("2222")) {
+            if(diagonal.contains("1111") || diagonal.contains("2222")){
                 return true;
             }
         }
 
-        String diagonal = "";
-        for (int i = 0; i < 4; i++) {
-            int x = 3 + i;
-            int y = 5 - i;
-            diagonal += pointMatrix[x][y];
-            if (diagonal.contains("1111") || diagonal.contains("2222")) {
+        aux = transposeMatrix(aux);
+
+        for (int i = 1 - w; i < h; i++){
+            diagonal = "";
+            for (int x = -min(0, i), y = max(0, i); x < w && y < h; x++, y++){
+                diagonal += aux[x][y];
+            }
+            if(diagonal.contains("1111") || diagonal.contains("2222")){
                 return true;
             }
         }
-        diagonal = "";
-        for (int i = 0; i < 5; i++) {
-            int x = i;
-            int y = 1 + i;
-            diagonal += pointMatrix[x][y];
-            if (diagonal.contains("1111") || diagonal.contains("2222")) {
-                return true;
-            }
-        }
-        for (int i = 0; i < 4; i++) {
-            int x = i + 1;
-            int y = i + 2;
-            diagonal += pointMatrix[x][y];
-            if (diagonal.contains("1111") || diagonal.contains("2222")) {
-                return true;
-            }
-        }
-        diagonal = "";
-        for (int i = 0; i < 5; i++) {
-            int x = 2 + i;
-            int y = 5 - i;
-            diagonal += pointMatrix[x][y];
-            if (diagonal.contains("1111") || diagonal.contains("2222")) {
-                return true;
-            }
-        }
+        
         return false;
     }
 
