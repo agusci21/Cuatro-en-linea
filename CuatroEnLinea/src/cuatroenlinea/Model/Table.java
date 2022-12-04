@@ -98,6 +98,19 @@ public class Table {
         return false;
     }
 
+    public boolean noPosibleMovements(){
+        boolean contains0 = false;
+        for (int i = 0; i < pointMatrix.length; i++) {
+            for (int j = 0; j < pointMatrix[0].length; j++) {
+                if(pointMatrix[i][j] == 0){
+                    contains0 = true;
+                    break;
+                }
+            }
+        }
+        return !contains0;
+    }
+
     private static int[][] transposeMatrix(int[][] matrix) {
         int[][] transposed = new int[matrix[0].length][matrix.length];
 

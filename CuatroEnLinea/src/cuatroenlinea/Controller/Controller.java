@@ -210,7 +210,19 @@ public class Controller implements ActionListener {
     panels[index][firstFreePosition].setBackground(
         isFirstPlayerTurn ? Color.red : Color.blue
       );
-    if (table.veryficateWinner()) {
+    if(table.noPosibleMovements()){
+      JOptionPane.showMessageDialog(
+        null,
+        "Empate, sin mas jugadas"
+      );
+      mainMenuView.setVisible(true);
+      gameView.setVisible(false);
+      FileSystemHelper.refreshPoints(players);
+      resetPanelsColor();
+      isFirstPlayerTurn = true;
+      return;
+    }
+    if (false) {
 
       JOptionPane.showMessageDialog(
         null,
