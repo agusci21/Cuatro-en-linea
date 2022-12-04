@@ -222,7 +222,7 @@ public class Controller implements ActionListener {
       isFirstPlayerTurn = true;
       return;
     }
-    if (false) {
+    if (table.veryficateWinner()) {
 
       JOptionPane.showMessageDialog(
         null,
