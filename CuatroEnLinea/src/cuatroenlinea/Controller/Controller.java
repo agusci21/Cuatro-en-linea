@@ -12,6 +12,7 @@ import cuatroenlinea.Model.Table;
 import cuatroenlinea.View.CreateNewPlayerView;
 import cuatroenlinea.View.GameView;
 import cuatroenlinea.View.MainMenuView;
+import cuatroenlinea.View.ResultsView;
 import cuatroenlinea.View.SelectPlayersView;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -27,6 +28,7 @@ import javax.swing.JPanel;
  */
 public class Controller implements ActionListener {
   private MainMenuView mainMenuView;
+  private ResultsView resultsView;
   private CreateNewPlayerView createNewPlayerView;
   private SelectPlayersView selectPlayersView;
   private GameView gameView;
@@ -40,12 +42,14 @@ public class Controller implements ActionListener {
 
   public Controller(
     MainMenuView mainMenuView,
+    ResultsView resultsView,
     CreateNewPlayerView createNewPlayerView,
     SelectPlayersView selectPlayersView,
     GameView gameView,
     Table table
   ) {
     this.mainMenuView = mainMenuView;
+    this.resultsView = resultsView;
     this.createNewPlayerView = createNewPlayerView;
     this.selectPlayersView = selectPlayersView;
     this.gameView = gameView;
@@ -56,6 +60,10 @@ public class Controller implements ActionListener {
     // Main View buttons
     mainMenuView.getCreateNewPlayerButton().addActionListener(this);
     mainMenuView.getPlayButton().addActionListener(this);
+    mainMenuView.getViewResultsButton().addActionListener(this);
+
+    //Results view
+    resultsView.getBackButton().addActionListener(this);
 
     // create new player buttons
     createNewPlayerView
@@ -65,7 +73,6 @@ public class Controller implements ActionListener {
     createNewPlayerView.getBackButton().addActionListener(this);
     //Select players buttons
     selectPlayersView.getPlayer1selectionList().addActionListener(this);
-
     selectPlayersView.getPlayer2selectionList().addActionListener(this);
     selectPlayersView.getSelectPlayerButton().addActionListener(this);
     selectPlayersView.getPlayButton().addActionListener(this);
@@ -148,6 +155,20 @@ public class Controller implements ActionListener {
       }
     } else if (gameButtons.contains(pressedButton)) {
       handleGameButtons(pressedButton);
+    }else if(pressedButton == mainMenuView.getViewResultsButton()){
+      resultsView.getResultsList().removeAll();
+
+      players = FileSystemHelper.getPlayersFromTxt();
+
+      for(PlayerModel player :  players){
+        resultsView.getResultsList().add(player.getName() + ": " + player.getScores());
+      }
+
+      resultsView.setVisible(true);
+      mainMenuView.setVisible(false);
+    }else if(pressedButton == resultsView.getBackButton()){
+      mainMenuView.setVisible(true);
+      resultsView.setVisible(false);
     }
   }
 

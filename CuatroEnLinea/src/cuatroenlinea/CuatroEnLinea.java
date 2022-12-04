@@ -10,6 +10,7 @@ import cuatroenlinea.Model.Table;
 import cuatroenlinea.View.CreateNewPlayerView;
 import cuatroenlinea.View.GameView;
 import cuatroenlinea.View.MainMenuView;
+import cuatroenlinea.View.ResultsView;
 import cuatroenlinea.View.SelectPlayersView;
 
 public class CuatroEnLinea {
@@ -19,6 +20,7 @@ public class CuatroEnLinea {
     FileSystemHelper.createPlayersTxt();
 
     MainMenuView mainMenuView = new MainMenuView();
+    ResultsView resultsView = new ResultsView();
     CreateNewPlayerView createNewPlayerView = new CreateNewPlayerView();
     SelectPlayersView selectPlayersView = new SelectPlayersView();
     GameView gameView = new GameView();
@@ -26,6 +28,7 @@ public class CuatroEnLinea {
 
     Controller controller = new Controller(
       mainMenuView,
+      resultsView,
       createNewPlayerView,
       selectPlayersView,
       gameView,
