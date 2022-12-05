@@ -4,7 +4,6 @@
  */
 package cuatroenlinea.Controller;
 
-import cuatroenlinea.Helpers.PlayersHelper;
 import cuatroenlinea.Model.PlayerModel;
 import cuatroenlinea.Model.Table;
 import cuatroenlinea.View.CreateNewPlayerView;
@@ -102,7 +101,7 @@ public class Controller implements ActionListener {
     ) {
       players = getPlayersFromTxt();
       if (
-        PlayersHelper.willBeDupplictedPlayers(
+        willBeDupplictedPlayers(
           createNewPlayerView.getCreateNewPlayerTextField().getText(),
           players
         )
@@ -150,8 +149,8 @@ public class Controller implements ActionListener {
       String firstName = selectPlayersView.getFirstPlayerLabel().getText();
       String secondName = selectPlayersView.getSecondPlayerLabel().getText();
       if (validateOponents(firstName, secondName)) {
-        firstPlayer = PlayersHelper.getPlayerByName(firstName, players);
-        secondPlayer = PlayersHelper.getPlayerByName(secondName, players);
+        firstPlayer = getPlayerByName(firstName, players);
+        secondPlayer = getPlayerByName(secondName, players);
         selectPlayersView.setVisible(false);
         gameView.setVisible(true);
         table.restartPointMatrix();
@@ -394,4 +393,44 @@ public class Controller implements ActionListener {
       validateNotAutoOponent(firstName, secondName)
     );
   }
+
+  public boolean areDupplicatedPlayers(ArrayList<PlayerModel> players) {
+    boolean areDupplicatedPlayers = false;
+    for (int i = 0; i < players.size() - 1; i++) {
+      String firstName = players.get(i).getName();
+      for (int j = i + 1; j < players.size(); j++) {
+        String secondName = players.get(j).getName();
+        if (firstName.equals(secondName)) {
+          areDupplicatedPlayers = true;
+          break;
+        }
+      }
+    }
+    return areDupplicatedPlayers;
+  }
+
+  public boolean willBeDupplictedPlayers(
+    String name,
+    ArrayList<PlayerModel> players
+  ) {
+    for (PlayerModel player : players) {
+      if (player.getName().equals(name)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public PlayerModel getPlayerByName(
+    String name,
+    ArrayList<PlayerModel> players
+  ) {
+    for (PlayerModel player : players) {
+      if (player.getName().equals(name)) {
+        return player;
+      }
+    }
+    return null;
+  }
+
 }
