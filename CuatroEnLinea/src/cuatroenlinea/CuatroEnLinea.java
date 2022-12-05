@@ -5,7 +5,6 @@
 package cuatroenlinea;
 
 import cuatroenlinea.Controller.Controller;
-import cuatroenlinea.Helpers.FileSystemHelper;
 import cuatroenlinea.Model.Table;
 import cuatroenlinea.View.CreateNewPlayerView;
 import cuatroenlinea.View.GameView;
@@ -17,7 +16,6 @@ public class CuatroEnLinea {
 
   public static void main(String[] args) {
     System.out.print("\033[H\033[2J");
-    FileSystemHelper.createPlayersTxt();
 
     MainMenuView mainMenuView = new MainMenuView();
     ResultsView resultsView = new ResultsView();

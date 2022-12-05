@@ -4,7 +4,7 @@
  */
 package cuatroenlinea.Controller;
 
-import cuatroenlinea.Helpers.FileSystemHelper;
+ 
 import cuatroenlinea.Helpers.MessageHelper;
 import cuatroenlinea.Helpers.PlayersHelper;
 import cuatroenlinea.Model.PlayerModel;
@@ -17,7 +17,13 @@ import cuatroenlinea.View.SelectPlayersView;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
+
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -82,8 +88,8 @@ public class Controller implements ActionListener {
     setGameButtonsActions();
 
     //Commons acctions
-    players = FileSystemHelper.getPlayersFromTxt();
-
+    createPlayersTxt();
+    players =  getPlayersFromTxt();
     mainMenuView.setVisible(true);
   }
 
@@ -97,7 +103,7 @@ public class Controller implements ActionListener {
     } else if (
       pressedButton == createNewPlayerView.getCreateNewPlayerSubmitButton()
     ) {
-      players = FileSystemHelper.getPlayersFromTxt();
+      players =  getPlayersFromTxt();
       if (
         PlayersHelper.willBeDupplictedPlayers(
           createNewPlayerView.getCreateNewPlayerTextField().getText(),
@@ -107,7 +113,7 @@ public class Controller implements ActionListener {
         JOptionPane.showMessageDialog(null, "Ese nombre ya esta en uso");
         return;
       }
-      FileSystemHelper.saveNewPlayer(
+      saveNewPlayer(
         createNewPlayerView.getCreateNewPlayerTextField().getText()
       );
       mainMenuView.setVisible(true);
@@ -118,7 +124,7 @@ public class Controller implements ActionListener {
     } else if (pressedButton == mainMenuView.getPlayButton()) {
       selectPlayersView.getPlayer1selectionList().removeAll();
       selectPlayersView.getPlayer2selectionList().removeAll();
-      players = FileSystemHelper.getPlayersFromTxt();
+      players =  getPlayersFromTxt();
       for (PlayerModel player : players) {
         selectPlayersView.getPlayer1selectionList().add(player.getName());
         selectPlayersView.getPlayer2selectionList().add(player.getName());
@@ -159,7 +165,7 @@ public class Controller implements ActionListener {
     }else if(pressedButton == mainMenuView.getViewResultsButton()){
       resultsView.getResultsList().removeAll();
 
-      players = FileSystemHelper.getPlayersFromTxt();
+      players = getPlayersFromTxt();
 
       for(PlayerModel player :  players){
         resultsView.getResultsList().add(player.getName() + ": " + player.getScores());
@@ -217,7 +223,7 @@ public class Controller implements ActionListener {
       );
       mainMenuView.setVisible(true);
       gameView.setVisible(false);
-      FileSystemHelper.refreshPoints(players);
+      refreshPoints(players);
       resetPanelsColor();
       isFirstPlayerTurn = true;
       return;
@@ -235,7 +241,7 @@ public class Controller implements ActionListener {
       }else{
         secondPlayer.incrementPoints();
       }
-      FileSystemHelper.refreshPoints(players);
+      refreshPoints(players);
       resetPanelsColor();
       isFirstPlayerTurn = true;
       return;
@@ -291,4 +297,86 @@ public class Controller implements ActionListener {
 
     panels = locPanels;
   }
+
+  final String currentDir =
+    System.getProperty("user.dir") + "\\CuatroEnLinea\\data\\";
+ 
+  public   void saveNewPlayer(
+    String userName
+  ) {
+    try {
+      String data = getPlayerTxtString();
+      String aux = data.isBlank() ? "" : ",";
+      data += aux + (userName) + ","  + 0; 
+      FileWriter fWriter = new FileWriter(currentDir + "players.txt");
+      fWriter.write(data);
+      fWriter.close();
+      
+
+    } catch (IOException e) {
+      System.out.println(e);
+    }
+  }
+
+  public   void refreshPoints(ArrayList<PlayerModel> players){
+    String data = "";
+    for(PlayerModel player : players){
+      data += player.getName() + "," + player.getScores() + ",";
+    }
+    try {
+      FileWriter fWriter = new FileWriter(currentDir + "players.txt");
+      fWriter.write(data);
+      fWriter.close();
+    } catch (IOException e) {}
+
+  }
+
+  public   void createPlayersTxt() {
+    try {
+      
+      File file = new File(currentDir + "players.txt");
+      if(file.exists()){
+        return;
+      }
+      file.createNewFile();
+  } catch (IOException e) {}
+    
+  }
+
+  public   String getPlayerTxtString() {
+    File file = new File(currentDir + "players.txt");
+    String data = "";
+    try {
+      Scanner sc = new Scanner(file);
+      while(sc.hasNextLine()){
+        data += sc.nextLine();
+      }
+      sc.close();
+      return data;
+    } catch (FileNotFoundException e) {}
+
+    return "";
+  }
+
+  public   ArrayList<PlayerModel> getPlayersFromTxt() {
+   
+    ArrayList<PlayerModel> players = new ArrayList<PlayerModel>();
+    String data = getPlayerTxtString();
+
+    if(data.isBlank()){
+      return players;
+    }
+
+    String[] pairs = data.split(",");
+
+    for(int  i = 0; i < pairs.length; i +=2 ){
+      players.add(new PlayerModel(pairs[i], Integer.parseInt(pairs[i + 1])));
+    }
+    
+    return players;
+  }
+
+
+
+
 }
