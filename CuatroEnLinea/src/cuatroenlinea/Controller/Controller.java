@@ -4,8 +4,6 @@
  */
 package cuatroenlinea.Controller;
 
- 
-import cuatroenlinea.Helpers.MessageHelper;
 import cuatroenlinea.Helpers.PlayersHelper;
 import cuatroenlinea.Model.PlayerModel;
 import cuatroenlinea.Model.Table;
@@ -23,7 +21,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -89,7 +86,7 @@ public class Controller implements ActionListener {
 
     //Commons acctions
     createPlayersTxt();
-    players =  getPlayersFromTxt();
+    players = getPlayersFromTxt();
     mainMenuView.setVisible(true);
   }
 
@@ -103,7 +100,7 @@ public class Controller implements ActionListener {
     } else if (
       pressedButton == createNewPlayerView.getCreateNewPlayerSubmitButton()
     ) {
-      players =  getPlayersFromTxt();
+      players = getPlayersFromTxt();
       if (
         PlayersHelper.willBeDupplictedPlayers(
           createNewPlayerView.getCreateNewPlayerTextField().getText(),
@@ -124,7 +121,7 @@ public class Controller implements ActionListener {
     } else if (pressedButton == mainMenuView.getPlayButton()) {
       selectPlayersView.getPlayer1selectionList().removeAll();
       selectPlayersView.getPlayer2selectionList().removeAll();
-      players =  getPlayersFromTxt();
+      players = getPlayersFromTxt();
       for (PlayerModel player : players) {
         selectPlayersView.getPlayer1selectionList().add(player.getName());
         selectPlayersView.getPlayer2selectionList().add(player.getName());
@@ -152,7 +149,7 @@ public class Controller implements ActionListener {
     } else if (pressedButton == selectPlayersView.getPlayButton()) {
       String firstName = selectPlayersView.getFirstPlayerLabel().getText();
       String secondName = selectPlayersView.getSecondPlayerLabel().getText();
-      if (MessageHelper.validateOponents(firstName, secondName)) {
+      if (validateOponents(firstName, secondName)) {
         firstPlayer = PlayersHelper.getPlayerByName(firstName, players);
         secondPlayer = PlayersHelper.getPlayerByName(secondName, players);
         selectPlayersView.setVisible(false);
@@ -162,25 +159,26 @@ public class Controller implements ActionListener {
       }
     } else if (gameButtons.contains(pressedButton)) {
       handleGameButtons(pressedButton);
-    }else if(pressedButton == mainMenuView.getViewResultsButton()){
+    } else if (pressedButton == mainMenuView.getViewResultsButton()) {
       resultsView.getResultsList().removeAll();
 
       players = getPlayersFromTxt();
 
-      for(PlayerModel player :  players){
-        resultsView.getResultsList().add(player.getName() + ": " + player.getScores());
+      for (PlayerModel player : players) {
+        resultsView
+          .getResultsList()
+          .add(player.getName() + ": " + player.getScores());
       }
 
       resultsView.setVisible(true);
       mainMenuView.setVisible(false);
-    }else if(pressedButton == resultsView.getBackButton()){
+    } else if (pressedButton == resultsView.getBackButton()) {
       mainMenuView.setVisible(true);
       resultsView.setVisible(false);
     }
   }
 
-  public void resetPanelsColor(){
-      
+  public void resetPanelsColor() {
     for (int i = 0; i < panels.length; i++) {
       for (int j = 0; j < panels[0].length; j++) {
         panels[i][j].setBackground(Color.CYAN);
@@ -216,11 +214,8 @@ public class Controller implements ActionListener {
     panels[index][firstFreePosition].setBackground(
         isFirstPlayerTurn ? Color.red : Color.blue
       );
-    if(table.noPosibleMovements()){
-      JOptionPane.showMessageDialog(
-        null,
-        "Empate, sin mas jugadas"
-      );
+    if (table.noPosibleMovements()) {
+      JOptionPane.showMessageDialog(null, "Empate, sin mas jugadas");
       mainMenuView.setVisible(true);
       gameView.setVisible(false);
       refreshPoints(players);
@@ -229,16 +224,17 @@ public class Controller implements ActionListener {
       return;
     }
     if (table.veryficateWinner()) {
-
       JOptionPane.showMessageDialog(
         null,
-        "Felicitaciones " + (isFirstPlayerTurn ? firstPlayer.getName() : secondPlayer.getName()) + " has ganado"
+        "Felicitaciones " +
+        (isFirstPlayerTurn ? firstPlayer.getName() : secondPlayer.getName()) +
+        " has ganado"
       );
       mainMenuView.setVisible(true);
       gameView.setVisible(false);
-      if(isFirstPlayerTurn){
+      if (isFirstPlayerTurn) {
         firstPlayer.incrementPoints();
-      }else{
+      } else {
         secondPlayer.incrementPoints();
       }
       refreshPoints(players);
@@ -248,9 +244,9 @@ public class Controller implements ActionListener {
     }
     isFirstPlayerTurn = !isFirstPlayerTurn;
   }
-  private void initPanelsMatrix(){
 
-    JPanel[][] locPanels =new JPanel[7][6];
+  private void initPanelsMatrix() {
+    JPanel[][] locPanels = new JPanel[7][6];
 
     locPanels[1 - 1][1 - 1] = gameView.getpanel11();
     locPanels[2 - 1][1 - 1] = gameView.getpanel12();
@@ -300,27 +296,23 @@ public class Controller implements ActionListener {
 
   final String currentDir =
     System.getProperty("user.dir") + "\\CuatroEnLinea\\data\\";
- 
-  public   void saveNewPlayer(
-    String userName
-  ) {
+
+  public void saveNewPlayer(String userName) {
     try {
       String data = getPlayerTxtString();
       String aux = data.isBlank() ? "" : ",";
-      data += aux + (userName) + ","  + 0; 
+      data += aux + (userName) + "," + 0;
       FileWriter fWriter = new FileWriter(currentDir + "players.txt");
       fWriter.write(data);
       fWriter.close();
-      
-
     } catch (IOException e) {
       System.out.println(e);
     }
   }
 
-  public   void refreshPoints(ArrayList<PlayerModel> players){
+  public void refreshPoints(ArrayList<PlayerModel> players) {
     String data = "";
-    for(PlayerModel player : players){
+    for (PlayerModel player : players) {
       data += player.getName() + "," + player.getScores() + ",";
     }
     try {
@@ -328,27 +320,24 @@ public class Controller implements ActionListener {
       fWriter.write(data);
       fWriter.close();
     } catch (IOException e) {}
-
   }
 
-  public   void createPlayersTxt() {
+  public void createPlayersTxt() {
     try {
-      
       File file = new File(currentDir + "players.txt");
-      if(file.exists()){
+      if (file.exists()) {
         return;
       }
       file.createNewFile();
-  } catch (IOException e) {}
-    
+    } catch (IOException e) {}
   }
 
-  public   String getPlayerTxtString() {
+  public String getPlayerTxtString() {
     File file = new File(currentDir + "players.txt");
     String data = "";
     try {
       Scanner sc = new Scanner(file);
-      while(sc.hasNextLine()){
+      while (sc.hasNextLine()) {
         data += sc.nextLine();
       }
       sc.close();
@@ -358,25 +347,51 @@ public class Controller implements ActionListener {
     return "";
   }
 
-  public   ArrayList<PlayerModel> getPlayersFromTxt() {
-   
+  public ArrayList<PlayerModel> getPlayersFromTxt() {
     ArrayList<PlayerModel> players = new ArrayList<PlayerModel>();
     String data = getPlayerTxtString();
 
-    if(data.isBlank()){
+    if (data.isBlank()) {
       return players;
     }
 
     String[] pairs = data.split(",");
 
-    for(int  i = 0; i < pairs.length; i +=2 ){
+    for (int i = 0; i < pairs.length; i += 2) {
       players.add(new PlayerModel(pairs[i], Integer.parseInt(pairs[i + 1])));
     }
-    
+
     return players;
   }
 
+  private boolean validateNotEmptyPlayers(String firstName, String secondName) {
+    if (
+      firstName == null ||
+      firstName.isEmpty() ||
+      secondName == null ||
+      secondName.isEmpty()
+    ) {
+      JOptionPane.showMessageDialog(null, "Seleccione 2 jugadores");
+      return false;
+    }
+    return true;
+  }
 
+  private boolean validateNotAutoOponent(String firstName, String secondName) {
+    if (firstName.equals(secondName)) {
+      JOptionPane.showMessageDialog(
+        null,
+        "No puede seleccionar dos veces el mismo jugador"
+      );
+      return false;
+    }
+    return true;
+  }
 
-
+  public boolean validateOponents(String firstName, String secondName) {
+    return (
+      validateNotEmptyPlayers(firstName, secondName) &&
+      validateNotAutoOponent(firstName, secondName)
+    );
+  }
 }
