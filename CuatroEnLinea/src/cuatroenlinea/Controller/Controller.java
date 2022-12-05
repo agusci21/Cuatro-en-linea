@@ -183,21 +183,21 @@ public class Controller implements ActionListener {
   }
 
   private void setGameButtonsActions() {
-    gameView.gameBtn1.addActionListener(this);
-    gameView.gameBtn2.addActionListener(this);
-    gameView.gameBtn3.addActionListener(this);
-    gameView.gameBtn4.addActionListener(this);
-    gameView.gameBtn5.addActionListener(this);
-    gameView.gameBtn6.addActionListener(this);
-    gameView.gameBtn7.addActionListener(this);
+    gameView.getgameBtn1().addActionListener(this);
+    gameView.getgameBtn2().addActionListener(this);
+    gameView.getgameBtn3().addActionListener(this);
+    gameView.getgameBtn4().addActionListener(this);
+    gameView.getgameBtn5().addActionListener(this);
+    gameView.getgameBtn6().addActionListener(this);
+    gameView.getgameBtn7().addActionListener(this);
 
-    gameButtons.add(gameView.gameBtn1);
-    gameButtons.add(gameView.gameBtn2);
-    gameButtons.add(gameView.gameBtn3);
-    gameButtons.add(gameView.gameBtn4);
-    gameButtons.add(gameView.gameBtn5);
-    gameButtons.add(gameView.gameBtn6);
-    gameButtons.add(gameView.gameBtn7);
+    gameButtons.add(gameView.getgameBtn1());
+    gameButtons.add(gameView.getgameBtn2());
+    gameButtons.add(gameView.getgameBtn3());
+    gameButtons.add(gameView.getgameBtn4());
+    gameButtons.add(gameView.getgameBtn5());
+    gameButtons.add(gameView.getgameBtn6());
+    gameButtons.add(gameView.getgameBtn7());
   }
 
   private void handleGameButtons(Object pressedButton) {
@@ -246,48 +246,48 @@ public class Controller implements ActionListener {
 
     JPanel[][] locPanels =new JPanel[7][6];
 
-    locPanels[1 - 1][1 - 1] = gameView.panel11;
-    locPanels[2 - 1][1 - 1] = gameView.panel12;
-    locPanels[3 - 1][1 - 1] = gameView.panel13;
-    locPanels[4 - 1][1 - 1] = gameView.panel14;
-    locPanels[5 - 1][1 - 1] = gameView.panel15;
-    locPanels[6 - 1][1 - 1] = gameView.panel16;
-    locPanels[7 - 1][1 - 1] = gameView.panel17;
-    locPanels[1 - 1][2 - 1] = gameView.panel21;
-    locPanels[2 - 1][2 - 1] = gameView.panel22;
-    locPanels[3 - 1][2 - 1] = gameView.panel23;
-    locPanels[4 - 1][2 - 1] = gameView.panel24;
-    locPanels[5 - 1][2 - 1] = gameView.panel25;
-    locPanels[6 - 1][2 - 1] = gameView.panel26;
-    locPanels[7 - 1][2 - 1] = gameView.panel27;
-    locPanels[1 - 1][3 - 1] = gameView.panel31;
-    locPanels[2 - 1][3 - 1] = gameView.panel32;
-    locPanels[3 - 1][3 - 1] = gameView.panel33;
-    locPanels[4 - 1][3 - 1] = gameView.panel34;
-    locPanels[5 - 1][3 - 1] = gameView.panel35;
-    locPanels[6 - 1][3 - 1] = gameView.panel36;
-    locPanels[7 - 1][3 - 1] = gameView.panel37;
-    locPanels[1 - 1][4 - 1] = gameView.panel41;
-    locPanels[2 - 1][4 - 1] = gameView.panel42;
-    locPanels[3 - 1][4 - 1] = gameView.panel43;
-    locPanels[4 - 1][4 - 1] = gameView.panel44;
-    locPanels[5 - 1][4 - 1] = gameView.panel45;
-    locPanels[6 - 1][4 - 1] = gameView.panel46;
-    locPanels[7 - 1][4 - 1] = gameView.panel47;
-    locPanels[1 - 1][5 - 1] = gameView.panel51;
-    locPanels[2 - 1][5 - 1] = gameView.panel52;
-    locPanels[3 - 1][5 - 1] = gameView.panel53;
-    locPanels[4 - 1][5 - 1] = gameView.panel54;
-    locPanels[5 - 1][5 - 1] = gameView.panel55;
-    locPanels[6 - 1][5 - 1] = gameView.panel56;
-    locPanels[7 - 1][5 - 1] = gameView.panel57;
-    locPanels[1 - 1][6 - 1] = gameView.panel61;
-    locPanels[2 - 1][6 - 1] = gameView.panel62;
-    locPanels[3 - 1][6 - 1] = gameView.panel63;
-    locPanels[4 - 1][6 - 1] = gameView.panel64;
-    locPanels[5 - 1][6 - 1] = gameView.panel65;
-    locPanels[6 - 1][6 - 1] = gameView.panel66;
-    locPanels[7 - 1][6 - 1] = gameView.panel67;
+    locPanels[1 - 1][1 - 1] = gameView.getpanel11();
+    locPanels[2 - 1][1 - 1] = gameView.getpanel12();
+    locPanels[3 - 1][1 - 1] = gameView.getpanel13();
+    locPanels[4 - 1][1 - 1] = gameView.getpanel14();
+    locPanels[5 - 1][1 - 1] = gameView.getpanel15();
+    locPanels[6 - 1][1 - 1] = gameView.getpanel16();
+    locPanels[7 - 1][1 - 1] = gameView.getpanel17();
+    locPanels[1 - 1][2 - 1] = gameView.getpanel21();
+    locPanels[2 - 1][2 - 1] = gameView.getpanel22();
+    locPanels[3 - 1][2 - 1] = gameView.getpanel23();
+    locPanels[4 - 1][2 - 1] = gameView.getpanel24();
+    locPanels[5 - 1][2 - 1] = gameView.getpanel25();
+    locPanels[6 - 1][2 - 1] = gameView.getpanel26();
+    locPanels[7 - 1][2 - 1] = gameView.getpanel27();
+    locPanels[1 - 1][3 - 1] = gameView.getpanel31();
+    locPanels[2 - 1][3 - 1] = gameView.getpanel32();
+    locPanels[3 - 1][3 - 1] = gameView.getpanel33();
+    locPanels[4 - 1][3 - 1] = gameView.getpanel34();
+    locPanels[5 - 1][3 - 1] = gameView.getpanel35();
+    locPanels[6 - 1][3 - 1] = gameView.getpanel36();
+    locPanels[7 - 1][3 - 1] = gameView.getpanel37();
+    locPanels[1 - 1][4 - 1] = gameView.getpanel41();
+    locPanels[2 - 1][4 - 1] = gameView.getpanel42();
+    locPanels[3 - 1][4 - 1] = gameView.getpanel43();
+    locPanels[4 - 1][4 - 1] = gameView.getpanel44();
+    locPanels[5 - 1][4 - 1] = gameView.getpanel45();
+    locPanels[6 - 1][4 - 1] = gameView.getpanel46();
+    locPanels[7 - 1][4 - 1] = gameView.getpanel47();
+    locPanels[1 - 1][5 - 1] = gameView.getpanel51();
+    locPanels[2 - 1][5 - 1] = gameView.getpanel52();
+    locPanels[3 - 1][5 - 1] = gameView.getpanel53();
+    locPanels[4 - 1][5 - 1] = gameView.getpanel54();
+    locPanels[5 - 1][5 - 1] = gameView.getpanel55();
+    locPanels[6 - 1][5 - 1] = gameView.getpanel56();
+    locPanels[7 - 1][5 - 1] = gameView.getpanel57();
+    locPanels[1 - 1][6 - 1] = gameView.getpanel61();
+    locPanels[2 - 1][6 - 1] = gameView.getpanel62();
+    locPanels[3 - 1][6 - 1] = gameView.getpanel63();
+    locPanels[4 - 1][6 - 1] = gameView.getpanel64();
+    locPanels[5 - 1][6 - 1] = gameView.getpanel65();
+    locPanels[6 - 1][6 - 1] = gameView.getpanel66();
+    locPanels[7 - 1][6 - 1] = gameView.getpanel67();
 
     panels = locPanels;
   }

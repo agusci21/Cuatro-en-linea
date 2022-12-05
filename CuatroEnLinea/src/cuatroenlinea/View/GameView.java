@@ -17,6 +17,154 @@ public class GameView extends javax.swing.JFrame {
         initComponents();
     }
 
+public javax.swing.JButton getgameBtn1(){
+    return gameBtn1; 
+}
+public javax.swing.JButton getgameBtn2(){
+    return gameBtn2; 
+}
+public javax.swing.JButton getgameBtn3(){
+    return gameBtn3; 
+}
+public javax.swing.JButton getgameBtn4(){
+    return gameBtn4; 
+}
+public javax.swing.JButton getgameBtn5(){
+    return gameBtn5; 
+}
+public javax.swing.JButton getgameBtn6(){
+    return gameBtn6; 
+}
+public javax.swing.JButton getgameBtn7(){
+    return gameBtn7; 
+}
+public javax.swing.JPanel getpanel11(){
+    return panel11; 
+}
+public javax.swing.JPanel getpanel12(){
+    return panel12; 
+}
+public javax.swing.JPanel getpanel13(){
+    return panel13; 
+}
+public javax.swing.JPanel getpanel14(){
+    return panel14; 
+}
+public javax.swing.JPanel getpanel15(){
+    return panel15; 
+}
+public javax.swing.JPanel getpanel16(){
+    return panel16; 
+}
+public javax.swing.JPanel getpanel17(){
+    return panel17; 
+}
+public javax.swing.JPanel getpanel21(){
+    return panel21; 
+}
+public javax.swing.JPanel getpanel22(){
+    return panel22; 
+}
+public javax.swing.JPanel getpanel23(){
+    return panel23; 
+}
+public javax.swing.JPanel getpanel24(){
+    return panel24; 
+}
+public javax.swing.JPanel getpanel25(){
+    return panel25; 
+}
+public javax.swing.JPanel getpanel26(){
+    return panel26; 
+}
+public javax.swing.JPanel getpanel27(){
+    return panel27; 
+}
+public javax.swing.JPanel getpanel31(){
+    return panel31; 
+}
+public javax.swing.JPanel getpanel32(){
+    return panel32; 
+}
+public javax.swing.JPanel getpanel33(){
+    return panel33; 
+}
+public javax.swing.JPanel getpanel34(){
+    return panel34; 
+}
+public javax.swing.JPanel getpanel35(){
+    return panel35; 
+}
+public javax.swing.JPanel getpanel36(){
+    return panel36; 
+}
+public javax.swing.JPanel getpanel37(){
+    return panel37; 
+}
+public javax.swing.JPanel getpanel41(){
+    return panel41; 
+}
+public javax.swing.JPanel getpanel42(){
+    return panel42; 
+}
+public javax.swing.JPanel getpanel43(){
+    return panel43; 
+}
+public javax.swing.JPanel getpanel44(){
+    return panel44; 
+}
+public javax.swing.JPanel getpanel45(){
+    return panel45; 
+}
+public javax.swing.JPanel getpanel46(){
+    return panel46; 
+}
+public javax.swing.JPanel getpanel47(){
+    return panel47; 
+}
+public javax.swing.JPanel getpanel51(){
+    return panel51; 
+}
+public javax.swing.JPanel getpanel52(){
+    return panel52; 
+}
+public javax.swing.JPanel getpanel53(){
+    return panel53; 
+}
+public javax.swing.JPanel getpanel54(){
+    return panel54; 
+}
+public javax.swing.JPanel getpanel55(){
+    return panel55; 
+}
+public javax.swing.JPanel getpanel56(){
+    return panel56; 
+}
+public javax.swing.JPanel getpanel57(){
+    return panel57; 
+}
+public javax.swing.JPanel getpanel61(){
+    return panel61; 
+}
+public javax.swing.JPanel getpanel62(){
+    return panel62; 
+}
+public javax.swing.JPanel getpanel63(){
+    return panel63; 
+}
+public javax.swing.JPanel getpanel64(){
+    return panel64; 
+}
+public javax.swing.JPanel getpanel65(){
+    return panel65; 
+}
+public javax.swing.JPanel getpanel66(){
+    return panel66; 
+}
+public javax.swing.JPanel getpanel67(){
+    return panel67; 
+}
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -913,54 +1061,54 @@ public class GameView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton gameBtn1;
-    public javax.swing.JButton gameBtn2;
-    public javax.swing.JButton gameBtn3;
-    public javax.swing.JButton gameBtn4;
-    public javax.swing.JButton gameBtn5;
-    public javax.swing.JButton gameBtn6;
-    public javax.swing.JButton gameBtn7;
-    public javax.swing.JPanel panel11;
-    public javax.swing.JPanel panel12;
-    public javax.swing.JPanel panel13;
-    public javax.swing.JPanel panel14;
-    public javax.swing.JPanel panel15;
-    public javax.swing.JPanel panel16;
-    public javax.swing.JPanel panel17;
-    public javax.swing.JPanel panel21;
-    public javax.swing.JPanel panel22;
-    public javax.swing.JPanel panel23;
-    public javax.swing.JPanel panel24;
-    public javax.swing.JPanel panel25;
-    public javax.swing.JPanel panel26;
-    public javax.swing.JPanel panel27;
-    public javax.swing.JPanel panel31;
-    public javax.swing.JPanel panel32;
-    public javax.swing.JPanel panel33;
-    public javax.swing.JPanel panel34;
-    public javax.swing.JPanel panel35;
-    public javax.swing.JPanel panel36;
-    public javax.swing.JPanel panel37;
-    public javax.swing.JPanel panel41;
-    public javax.swing.JPanel panel42;
-    public javax.swing.JPanel panel43;
-    public javax.swing.JPanel panel44;
-    public javax.swing.JPanel panel45;
-    public javax.swing.JPanel panel46;
-    public javax.swing.JPanel panel47;
-    public javax.swing.JPanel panel51;
-    public javax.swing.JPanel panel52;
-    public javax.swing.JPanel panel53;
-    public javax.swing.JPanel panel54;
-    public javax.swing.JPanel panel55;
-    public javax.swing.JPanel panel56;
-    public javax.swing.JPanel panel57;
-    public javax.swing.JPanel panel61;
-    public javax.swing.JPanel panel62;
-    public javax.swing.JPanel panel63;
-    public javax.swing.JPanel panel64;
-    public javax.swing.JPanel panel65;
-    public javax.swing.JPanel panel66;
-    public javax.swing.JPanel panel67;
+    private javax.swing.JButton gameBtn1;
+    private javax.swing.JButton gameBtn2;
+    private javax.swing.JButton gameBtn3;
+    private javax.swing.JButton gameBtn4;
+    private javax.swing.JButton gameBtn5;
+    private javax.swing.JButton gameBtn6;
+    private javax.swing.JButton gameBtn7;
+    private javax.swing.JPanel panel11;
+    private javax.swing.JPanel panel12;
+    private javax.swing.JPanel panel13;
+    private javax.swing.JPanel panel14;
+    private javax.swing.JPanel panel15;
+    private javax.swing.JPanel panel16;
+    private javax.swing.JPanel panel17;
+    private javax.swing.JPanel panel21;
+    private javax.swing.JPanel panel22;
+    private javax.swing.JPanel panel23;
+    private javax.swing.JPanel panel24;
+    private javax.swing.JPanel panel25;
+    private javax.swing.JPanel panel26;
+    private javax.swing.JPanel panel27;
+    private javax.swing.JPanel panel31;
+    private javax.swing.JPanel panel32;
+    private javax.swing.JPanel panel33;
+    private javax.swing.JPanel panel34;
+    private javax.swing.JPanel panel35;
+    private javax.swing.JPanel panel36;
+    private javax.swing.JPanel panel37;
+    private javax.swing.JPanel panel41;
+    private javax.swing.JPanel panel42;
+    private javax.swing.JPanel panel43;
+    private javax.swing.JPanel panel44;
+    private javax.swing.JPanel panel45;
+    private javax.swing.JPanel panel46;
+    private javax.swing.JPanel panel47;
+    private javax.swing.JPanel panel51;
+    private javax.swing.JPanel panel52;
+    private javax.swing.JPanel panel53;
+    private javax.swing.JPanel panel54;
+    private javax.swing.JPanel panel55;
+    private javax.swing.JPanel panel56;
+    private javax.swing.JPanel panel57;
+    private javax.swing.JPanel panel61;
+    private javax.swing.JPanel panel62;
+    private javax.swing.JPanel panel63;
+    private javax.swing.JPanel panel64;
+    private javax.swing.JPanel panel65;
+    private javax.swing.JPanel panel66;
+    private javax.swing.JPanel panel67;
     // End of variables declaration//GEN-END:variables
 }
